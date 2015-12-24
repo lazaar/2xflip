@@ -23,15 +23,19 @@ module.exports = function(grunt) {
 
             js: {
                 files: ['<%= yeoman.app %>/modules/*/*.js', '<%= yeoman.app %>/modules/*/config/*.js', '<%= yeoman.app %>/modules/*/controllers/*.js', '<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/directives/*.js', '<%= yeoman.app %>/modules/*/filters/*.js'],
-                tasks: ['newer:jshint:all', 'ngdocs'],
+                tasks: ['newer:jshint:all'],
                 options: {
                     livereload: true
                 }
             },
 
-            jsUnitTest: {
-                files: ['<%= yeoman.app %>/modules/*/tests/unit/*.js'],
-                tasks: ['karma:unit']
+
+            css: {
+                files: ['<%= yeoman.app %>/css/*.scss', '<%= yeoman.app %>/css/sass/*.scss'],
+                tasks: ['sass'],
+                options: {
+                    livereload: true
+                }
             },
 
             styles: {
@@ -70,16 +74,6 @@ module.exports = function(grunt) {
                     ]
                 }
             },
-            test: {
-                options: {
-                    port: 9001,
-                    base: [
-                        '.tmp',
-                        'test',
-                        '<%= yeoman.app %>'
-                    ]
-                }
-            },
             dist: {
                 options: {
                     base: ['<%= yeoman.dist %>']
@@ -99,13 +93,7 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js'
-            ],
-            unitTest: {
-                options: {
-                    jshintrc: '.jshintrc'
-                },
-                src: ['<%= yeoman.app %>/modules/*/tests/unit/*.js']
-            }
+            ]
         },
 
         clean: {
@@ -214,17 +202,6 @@ module.exports = function(grunt) {
             bowerDependencies: {
                 files: {
                     'app/index.html': ['bower.json'],
-                }
-            },
-            karmaDependencies: {
-                options: {
-                    ignorePath: '',
-                    transform: function(filepath) {
-                        return '\'' + filepath + '\',';
-                    }
-                },
-                files: {
-                    'karma.conf.js': ['bower.json'],
                 }
             }
         },
@@ -378,9 +355,7 @@ module.exports = function(grunt) {
             server: [
                 'copy:styles'
             ],
-            test: [
-                'copy:styles'
-            ],
+
             dist: [
                 'copy:styles',
                 'imagemin',
@@ -388,15 +363,19 @@ module.exports = function(grunt) {
             ]
         },
 
-        // Test settings
-        karma: {
-            unit: {
-                configFile: 'karma.conf.js',
-                singleRun: true
+
+        sass: {
+            options: {
+                sourceMap: false
+            },
+            dist: {
+                files: {
+                    '<%= yeoman.app %>/css/main.css': '<%= yeoman.app %>/css/main.scss'
+                }
             }
         }
     });
-
+ 
 
     grunt.registerTask('serve', function(target) {
         if (target === 'dist') {
@@ -418,15 +397,6 @@ module.exports = function(grunt) {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
         grunt.task.run(['serve:' + target]);
     });
-
-    grunt.registerTask('test', [
-        'clean:server',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
-    ]);
-
     grunt.registerTask('docs', [
         'clean:docs',
         'ngdocs',
@@ -454,7 +424,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'newer:jshint',
-        'test',
         'build'
     ]);
 };

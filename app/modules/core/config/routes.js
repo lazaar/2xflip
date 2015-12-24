@@ -29,7 +29,7 @@ angular
                 .state('home', {
                     url: '/',
                     templateUrl: 'modules/core/views/home.html',
-                    controller: 'HomeController'
+                    controller: 'HomeController as vm'
                 });
         }
     ]);

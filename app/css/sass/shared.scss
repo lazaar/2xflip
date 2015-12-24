@@ -1,0 +1,19 @@
+*:not(input):not(textarea) {
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
+}
+
+body {
+    opacity: 1;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease;
+    transition: opacity 1s;
+}
+
+.ng-invalid {
+    border: 1px solid red !important;
+}
+.main_wrapper, html, body, .container, #uiview{
+	height: 100%;
+	padding:0;
+}

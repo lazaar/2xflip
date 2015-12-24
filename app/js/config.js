@@ -6,12 +6,8 @@ var ApplicationConfiguration = (function() {
     var applicationModuleName = 'angularjsapp';
     var applicationModuleVendorDependencies = [
         'ngResource',
-        
-        
         'ngAnimate', 
-        
         'ngTouch', 
-        
         'ngSanitize', 
         'ui.router',
         'ui.bootstrap',

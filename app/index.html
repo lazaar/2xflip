@@ -14,53 +14,24 @@
 
     <!-- build:css styles/custom.css -->
         <!-- injector:css -->
-        <link rel="stylesheet" href="css/customcordova.css">
-        <link rel="stylesheet" href="css/demo.css">
+        <link rel="stylesheet" href="css/main.css">
         <!-- endinjector -->
     <!-- endbuild -->
     <script src="cordova.js"></script>
   </head>
 
-  <body>
-    <!-- =================== Navigation bar =================== -->
-    <header class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">
-                        angularjsapp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="header-placeholder"></div>
-    <div role="main">
-        <header class="bs-header text-center" id="overview">
-            <div class="container">
-                <h1 id="app-heading">
-                    AngularJs Cordova application
-                </h1>
-            </div>
-        </header>
+  <body> 
+    <!-- =================== Main =================== -->
+ 
+    <div role="main" class="main_wrapper">
 
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <section id="uiview" ui-view></section>
-                </div>
-            </div>
+            <section id="uiview" ui-view></section>
         </div>
         <!-- /.container -->
     </div>
     <!-- /.main -->
 
-    <footer class="footer">
-        <div class="container">
-            <p>Code licensed under <a href="https://github.com/keshavos/generator-angularjs-cordova/">MIT License</a>.</p>
-        </div>
-    </footer>
 
     <!-- build:js scripts/vendor.js -->
         <!-- injector:bowerjs -->
@@ -75,6 +46,7 @@
         <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="lib/angular-ui-utils/ui-utils.js"></script>
         <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="lib/lodash/lodash.js"></script>
         <!-- endinjector -->
     <!-- endbuild -->
 

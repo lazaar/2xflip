@@ -1,6 +1,18 @@
-<div class="page-header">
-    <h1 id="home-h1">Congratulations!</h1>
+<div class="menu-page" ng-click="vm.click()">
+	<div class="logo">
+	    <img src="img/logo.png" alt="logo" ng-show="vm.showLogo">
+	</div>
+	<div class="btns">
+		<div class="simple col-xs-6">
+			<i class="play-icon"></i>
+			<p>Simple Mode</p>
+		</div>
+		<div class="flash col-xs-6">
+			<i class="chrono-icon"></i>
+			<p>Flash Mode</p>
+		</div>
+	</div>
+	<p id="home-content">
+	    You have successfully created an AngularJs application running within a cordova app !
+	</p>
 </div>
-<p id="home-content">
-    You have successfully created an AngularJs application running within a cordova app !
-</p>
