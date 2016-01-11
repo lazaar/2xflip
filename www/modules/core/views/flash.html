@@ -1,0 +1,32 @@
+<div class="play-page flash">
+	<div class="header">
+		<div class="btn-return" ng-click="goToState('home')">Menu</div>
+		<div class="hearts pull-right" ng-class="{'timeLeft': vm.timeLeft}">{{vm.count.min}}:<span ng-if="vm.count.s < 10">0</span>{{vm.count.s}}
+		</div>
+	</div>
+	<div class="score-wrapper">
+		<div class="title">{{vm.TitleScore}}</div>
+		<div class="score">{{vm.score}}</div>
+	</div>
+	<div class="main-game row">
+		<div class="col-xs-{{vm.mode.cards}} card-wrapper" ng-repeat="(index, card) in vm.cards track by index">
+			<div class="card number{{card.value}} {{card.state}}-card" ng-click="vm.cardClicked(index)" ng-class="{'numberSmall' : card.value > 10000}">
+				<span ng-if="card.state == 'show' || card.state == 'load'">{{card.value}}</span>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal-wrapper bounceInRight" ng-if="vm.lose">
+		<div class="FlipModal">
+			<div class="modal-title">Time out !</div>
+			<div class="modal-content">
+				<p>Your score is : {{vm.score}}</p>
+			</div>
+			<div class="modal-footer row">
+				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="goToState('home')">Menu</div></div>
+				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.init()">Try Again</div></div>
+			</div>
+		</div>
+	</div>
+</div>

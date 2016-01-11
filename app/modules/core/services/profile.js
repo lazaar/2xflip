@@ -1,3 +1,4 @@
+
 'use strict';
 
 /**
@@ -7,9 +8,8 @@
  */
 angular
     .module('core')
-    .factory('ProfileService',
+    .factory('ProfileService', ['FlipConstants',
         function(FlipConstants) {
-
             function isFirstUse(){
                 return !localStorage.getItem(FlipConstants.localStorage.showAll);
             }
@@ -40,6 +40,6 @@ angular
                 propertyDecrement          : propertyDecrement
             };
         }
-    );
+    ]);
 
  

@@ -163,6 +163,7 @@ angular
             function showOneFct(){
                 if(vm.showOneDiamonds> 0){  
                     vm.showOne = !vm.showOne;
+                    vm.infoWindow.show = vm.showOne;
                     if(vm.showOne){
                         vm.infoWindow.content = 'Choose the card or tap the button again to desactivate it';
                     }

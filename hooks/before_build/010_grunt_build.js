@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+/*#!/usr/bin/env node
 'use strict';
 var exec = require('child_process').exec;
    exec('grunt build', 
@@ -10,3 +10,4 @@ var exec = require('child_process').exec;
 				process.exit(1);
     		}
 	});
+*/

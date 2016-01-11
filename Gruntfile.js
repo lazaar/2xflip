@@ -1,10 +1,13 @@
 'use strict';
 
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
+
+    grunt.loadNpmTasks("grunt-css-url-rewrite");
+    grunt.option('force', true);
 
     grunt.initConfig({
 
@@ -22,20 +25,16 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['<%= yeoman.app %>/modules/*/*.js', '<%= yeoman.app %>/modules/*/config/*.js', '<%= yeoman.app %>/modules/*/controllers/*.js','<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/directives/*.js', '<%= yeoman.app %>/modules/*/filters/*.js'],
-                tasks: ['newer:jshint:all'],
+                files: ['<%= yeoman.app %>/modules/*/*.js', '<%= yeoman.app %>/modules/*/config/*.js', '<%= yeoman.app %>/modules/*/controllers/*.js', '<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/directives/*.js', '<%= yeoman.app %>/modules/*/filters/*.js'],
+                tasks: ['newer:jshint:all', 'ngdocs'],
                 options: {
                     livereload: true
                 }
             },
 
-
-            css: {
-                files: ['<%= yeoman.app %>/css/*.scss', '<%= yeoman.app %>/css/sass/*.scss'],
-                tasks: ['sass'],
-                options: {
-                    livereload: true
-                }
+            jsUnitTest: {
+                files: ['<%= yeoman.app %>/modules/*/tests/unit/*.js'],
+                tasks: ['karma:unit']
             },
 
             styles: {
@@ -74,6 +73,16 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+            test: {
+                options: {
+                    port: 9001,
+                    base: [
+                        '.tmp',
+                        'test',
+                        '<%= yeoman.app %>'
+                    ]
+                }
+            },
             dist: {
                 options: {
                     base: ['<%= yeoman.dist %>']
@@ -93,7 +102,13 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js'
-            ]
+            ],
+            unitTest: {
+                options: {
+                    jshintrc: '.jshintrc'
+                },
+                src: ['<%= yeoman.app %>/modules/*/tests/unit/*.js']
+            }
         },
 
         clean: {
@@ -144,6 +159,7 @@ module.exports = function(grunt) {
                     'app/lib/angular/angular.js',
                     'app/lib/angular-resource/angular-resource.js',
                     'app/lib/angular-mocks/angular-mocks.js',
+                    'app/lib/angular-cookies/angular-cookies.js',
                     'app/lib/angular-sanitize/angular-sanitize.js',
                     'app/lib/angular-animate/angular-animate.js',
                     'app/lib/angular-touch/angular-touch.js',
@@ -202,6 +218,17 @@ module.exports = function(grunt) {
                 files: {
                     'app/index.html': ['bower.json'],
                 }
+            },
+            karmaDependencies: {
+                options: {
+                    ignorePath: '',
+                    transform: function(filepath) {
+                        return '\'' + filepath + '\',';
+                    }
+                },
+                files: {
+                    'karma.conf.js': ['bower.json'],
+                }
             }
         },
         // Renames files for browser caching purposes
@@ -218,8 +245,7 @@ module.exports = function(grunt) {
                         '<%= yeoman.dist %>/app/modules/*/controllers/*.js',
                         '<%= yeoman.dist %>/app/css/**/*.css',
                         '<%= yeoman.dist %>/app/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                        '<%= yeoman.dist %>/css/fonts/*',
-                        '<%= yeoman.dist %>/css/bg/*',
+                        '<%= yeoman.dist %>/css/fonts/*'
                     ]
                 }
             }
@@ -336,10 +362,17 @@ module.exports = function(grunt) {
                         'fonts/*'
                     ]
                 }, {
-                    expand: true,
-                    cwd: '.tmp/images',
-                    dest: '<%= yeoman.dist %>/img',
-                    src: ['generated/*']
+                        expand: true,
+                        cwd: '.tmp/images',
+                        dest: '<%= yeoman.dist %>/img',
+                        src: ['generated/*']
+                },
+                    {
+                        expand: true,
+                        flatten: true,
+                        filter: 'isFile',
+                        src: ['<%= yeoman.app %>/lib/*/fonts/*'],
+                        dest: '<%= yeoman.dist %>/styles/fonts'
                 }]
             },
             styles: {
@@ -355,27 +388,46 @@ module.exports = function(grunt) {
             server: [
                 'copy:styles'
             ],
-
+            test: [
+                'copy:styles'
+            ],
             dist: [
                 'copy:styles',
                 'imagemin',
                 'svgmin'
             ]
         },
-
-
-        sass: {
-            options: {
-                sourceMap: false
-            },
+         //rewriting font url
+        cssUrlRewrite: {
+           
             dist: {
-                files: {
-                    '<%= yeoman.app %>/css/main.css': '<%= yeoman.app %>/css/main.scss'
+                src: '<%= yeoman.dist %>/styles/vendor.css',
+                dest: '<%= yeoman.dist %>/styles/vendor.css',
+                options: {
+                    skipExternal: true,
+                    rewriteUrl: function (url, options, dataURI) {
+                       var i,
+                           fontEndings = '.[otf|eot|svg|ttf|woff|woff2]',
+                           filename = url.split('\\').pop(),
+                           filenameReg = new RegExp(fontEndings); 
+                            if (filenameReg.test(fontEndings)) {
+                                return 'fonts/' + filename;
+                            }
+                        return url;
+                    }
                 }
+            }
+        },
+
+        // Test settings
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun: true
             }
         }
     });
- 
+
 
     grunt.registerTask('serve', function(target) {
         if (target === 'dist') {
@@ -397,6 +449,15 @@ module.exports = function(grunt) {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
         grunt.task.run(['serve:' + target]);
     });
+
+    grunt.registerTask('test', [
+        'clean:server',
+        'concurrent:test',
+        'autoprefixer',
+        'connect:test',
+        'karma'
+    ]);
+
     grunt.registerTask('docs', [
         'clean:docs',
         'ngdocs',
@@ -419,11 +480,13 @@ module.exports = function(grunt) {
         'rev',
         'usemin',
         'htmlmin',
-        'comments:dist'
+        'comments:dist',
+        'cssUrlRewrite'
     ]);
 
     grunt.registerTask('default', [
         'newer:jshint',
+        'test',
         'build'
     ]);
 };

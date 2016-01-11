@@ -7,9 +7,8 @@
  */
 angular
     .module('core')
-    .factory('CardService',
+    .factory('CardService', [
         function() {
-
             function generateCard(max){
                 var result, random = Math.random();
 
@@ -47,7 +46,7 @@ angular
                         newIndex = currentIndex;
                     } 
                   }
-                return newIndex;
+                 return newIndex;
             }
             function hideOne(cards, index){
                 if(cards[index].state !== 'hide'){
@@ -117,5 +116,4 @@ angular
                 compareTwoCards   : compareTwoCards
             };
         }
-    );
-
+    ]);
