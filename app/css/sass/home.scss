@@ -13,8 +13,8 @@
 		    left: 0;
 		    right: 0;
 		    margin: auto;
+			&.ng-hide-remove{ animation:0.5s bounceIn ease; }
 		}
-		&.ng-hide-remove{ animation:0.5s bounceIn ease; }
 	} 
 }
 .menu-page .btns{
@@ -23,6 +23,18 @@
 		height: 100%;
 		text-align: center;
 		color:$white;
+		position: relative;
+		.btn-wrapper{
+			position:absolute;
+			left: 0;
+		    right: 0;
+		    top: 0;
+		    bottom: 0;
+		    margin: auto;
+    		height: 95px;
+		    font-size: 21px;
+		    text-transform: uppercase;
+		}
 	}
 	.simple{
 		background-color:$yellow;
@@ -30,4 +42,64 @@
 	.flash{
 		background-color:$red;
 	}
+}
+.menu-page .home-content{
+	text-align:center;
+    text-align: center;
+    height: 30%;
+    font-size: 30px;
+    padding: 20px 10px;
+    .score{
+    	text-transform: uppercase;
+    	span{
+		    display: block;
+		    color: $blue;
+		    font-size: 45px;
+    	} 
+    }
+}
+.menu-page{
+	.modal-wrapper .FlipModal{
+		width: 95%; 
+		height: 165px;
+		.modal-content.row{
+			margin-right: -5px;
+    		margin-left: -5px;
+    		padding: 20px 10px;
+		}
+		.card{
+			background-color: #907854;
+		    height: 100%;
+		    -moz-border-radius: 10px;
+		    -webkit-border-radius: 10px;
+		    border-radius: 10px;
+		    color: white;
+		    font-size: 20px;
+		    font-family: Arial;
+		    font-weight: bold;
+		    text-align: center;
+		    position: relative;
+		    animation:0.3s zoomIn ease;
+		}
+		.col-xs-4{
+			padding-right: 5px;
+		    padding-left: 5px;
+		    height: 80px;
+		    line-height: 80px;
+		    &:first-child .card{
+				background-color: #ad9674;
+		    }
+		    &:last-child .card{
+				background-color: #7D6541;
+		    }
+		}
+	}
+	.hide-card{
+		span{display:none;}
+		animation:0.5s flipInY ease !important;
+	}
+}
+#uiview {
+	//animation:0.5s zoomIn ease;
+
 }

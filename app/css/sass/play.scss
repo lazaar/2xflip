@@ -1,0 +1,170 @@
+.play-page{
+	height:100%;
+	background:url('bg/bg-play.png') no-repeat;
+	background-size:cover;
+	padding: 20px;
+	.header{
+		font-size: 25px;
+    	text-transform: uppercase;
+		.btn-return{
+		    color: $white;
+		    display: inline-block;
+		    background: url('bg/icon-return.png');
+		    background-size: 100% 100%;
+		    padding: 5px 10px 0px 40px;
+		}
+		.hearts{
+			 color: #e74c3c;
+		    font-family: Arial;
+		    font-weight: 600;
+		    font-size: 30px;
+		    .heart-icon{    vertical-align: text-top;}
+		}
+	}
+	.score-wrapper{
+		text-align: center;
+		.title{
+		    padding-top: 10px;
+		    text-transform: uppercase;
+		    font-size: 25px;
+		}
+		.score{
+		    width: 100%;
+		    max-width: 200px;
+		    background-color: $yellow;
+		    margin: auto;
+		    color: $white;
+		    font-size: 30px;
+		    border-bottom: 5px solid #d6ac03;
+    		line-height: 50px;
+    		height: 50px;
+    		  -moz-border-radius: 4px;
+			  -webkit-border-radius: 4px;
+			  border-radius: 4px ;
+		}
+	}
+	.bottom{
+		background: $red;
+	    color: $white;
+	    position: absolute;
+	    width: 100%;
+	    left: 0;
+	    bottom: 0;
+		height: 50px;
+	    line-height: 50px;
+	    text-align: center;
+	    font-size: 22px;
+	    sup{ color:$yellow; font-family: Arial; font-weight: bold;}
+	    .btn-help:first-child{border-right:1px solid #ee7e72;}
+	    .showOne{ color: #421300; animation: 0.5s swing ease;sup{display:none;}}
+	}
+	.main-game{
+		height: calc(100% - 165px);
+		padding:20px 0;
+		.card-wrapper{
+			max-height: 120px;
+			padding: 5px;
+			.card{
+				background-color:$brown;
+   				height: 100%;
+    		  -moz-border-radius: 10px;
+			  -webkit-border-radius: 10px;
+			  border-radius: 10px ;
+			    color: white;
+			    font-size: 37px;
+			    font-family: Arial;
+			    font-weight: bold;
+			    text-align: center;
+			    position:relative;
+			    span{
+			    	position:absolute;
+			    	top:0;	
+			    	bottom:0;	
+			    	right:0;	
+			    	left:0;	
+			    	margin:auto;
+					height: 50px;
+					line-height: 50px;
+
+			    }
+			    &.none-card{
+			    	display: none;
+			    }
+			}
+			&.col-xs-3{
+				width:33.33%; height: 33%; 
+			}
+			&.col-xs-4{
+				width:25%; height: 25%; 
+				.card{
+					font-size: 32px;
+					&.numberSmall{font-size: 20px !important;}
+				}
+			}
+			&.col-xs-5{
+				width:20%; height: 20%; 
+				.card{
+					font-size: 22px;
+					&.numberSmall{font-size: 15px !important;}
+				}
+			}
+		}
+	}
+}
+.number1{background-color:#4071bb !important;}
+.number2{background-color:#f7c80b !important}
+.number4{background-color:#97ce68 !important}
+.number8{background-color:#04c7ce !important}
+.number16{background-color:#04ce9b !important}
+.number32{background-color:#ff6766 !important}
+.number64{background-color:#1f7e7f !important}
+.number128{background-color:#1f7f5c !important}
+.number256{background-color:#5f5f5f !important}
+.number512{background-color:#8560a8 !important}
+.number1024{background-color:#f7a22f !important}
+.number2048{background-color:#662d91 !important}
+.number4096{background-color:#e74c3c !important}
+.number8192{background-color:#28324e !important}
+.number16384{background-color:#d1d5d8 !important;}
+.numberSmall{font-size: 28px !important;}
+.numberX{
+	background: url("bg/changeAll.png") #b8312f no-repeat center !important;
+	background-size: 70% !important;
+	span{display:none !important;}
+}
+.numberJ{
+	background: url("bg/joker.png") #475577 no-repeat center !important;
+	background-size: 70% !important;
+	span{display:none !important;}
+}
+.hide-card{
+	background : url("bg/icon-brain.png") #ad9674 no-repeat center !important;
+	background-size: 70% !important;
+	animation:0.5s flipInY ease;
+}
+
+.show-card{
+	animation:0.5s flipInY2 ease;
+}
+.load-card{
+	animation:0.3s zoomIn ease;
+}
+.infoWindow{
+	position: absolute;
+    bottom: 55px;
+    text-align: center;
+    line-height: 15px;
+    background: rgba(255,255,255,0.5);
+    font-family: Arial;
+    font-weight: bold; 
+    left: 0;
+    padding: 5px;
+    width: 100%;
+}
+.flash .header .hearts{
+	color:$blue;
+}
+.flash .header .timeLeft{
+	animation:0.3s pulse ease;
+	color:$red;
+}

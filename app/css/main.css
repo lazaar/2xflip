@@ -1352,6 +1352,52 @@
     -webkit-transform: perspective(400px);
     transform: perspective(400px); } }
 
+@-webkit-keyframes flipInY2 {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0; }
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; }
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1; }
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px); } }
+
+@keyframes flipInY2 {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0; }
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; }
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1; }
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px); } }
+
 .flipInY {
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
@@ -2370,11 +2416,19 @@
   -webkit-touch-callout: none;
   /* disable the IOS popup when long-press on a link */ }
 
+@font-face {
+  font-family: 'birdy';
+  src: url("fonts/birdy_game.eot");
+  src: url("fonts/birdy_game.ttf") format("truetype"), url("fonts/birdy_game.woff") format("woff"), url("fonts/birdy_game.svg#birdy") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 body {
   opacity: 1;
   -webkit-transition: opacity 1s ease;
   -moz-transition: opacity 1s ease;
-  transition: opacity 1s; }
+  transition: opacity 1s;
+  font-family: 'birdy'; }
 
 .ng-invalid {
   border: 1px solid red !important; }
@@ -2382,6 +2436,90 @@ body {
 .main_wrapper, html, body, .container, #uiview {
   height: 100%;
   padding: 0; }
+
+.chrono-icon {
+  background: url("bg/icon-chrono.png") no-repeat center;
+  background-size: 100%;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  background-size: contain; }
+
+.play-icon {
+  background: url("bg/icon-play.png") no-repeat center;
+  background-size: 100%;
+  width: 60px;
+  display: inline-block;
+  background-size: contain;
+  height: 60px; }
+
+.heart-icon {
+  background: url("bg/icon-heart.png") no-repeat center;
+  background-size: 100%;
+  width: 30px;
+  display: inline-block;
+  background-size: contain;
+  height: 30px; }
+
+.modal-wrapper {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  font-family: Arial;
+  text-align: center; }
+  .modal-wrapper .FlipModal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    vertical-align: middle;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.8);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    overflow: hidden; }
+    .modal-wrapper .FlipModal .modal-title {
+      background: #d94509;
+      color: #FFFFFF;
+      font-size: 25px;
+      font-weight: bold; }
+    .modal-wrapper .FlipModal .modal-content {
+      background: transparent;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border: none;
+      padding: 20px; }
+    .modal-wrapper .FlipModal .modal-footer {
+      border: 0;
+      padding: 10px 0;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+      width: 100%; }
+      .modal-wrapper .FlipModal .modal-footer .btn {
+        margin: 0;
+        color: #FFFFFF;
+        width: 100%;
+        font-weight: bold; }
+      .modal-wrapper .FlipModal .modal-footer .btn-yellow {
+        background: #f7c80b; }
+      .modal-wrapper .FlipModal .modal-footer .btn-blue {
+        background: #3b6db9; }
+      .modal-wrapper .FlipModal .modal-footer .btn-red {
+        background: #d94509; }
+
+.flash .modal-content {
+  font-size: 30px; }
 
 .menu-page {
   height: 100%; }
@@ -2398,16 +2536,274 @@ body {
       left: 0;
       right: 0;
       margin: auto; }
-    .menu-page .logo.ng-hide-remove {
-      animation: 0.5s bounceIn ease; }
+      .menu-page .logo img.ng-hide-remove {
+        animation: 0.5s bounceIn ease; }
 
 .menu-page .btns {
   height: 20%; }
   .menu-page .btns > div {
     height: 100%;
     text-align: center;
-    color: #FFFFFF; }
+    color: #FFFFFF;
+    position: relative; }
+    .menu-page .btns > div .btn-wrapper {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 95px;
+      font-size: 21px;
+      text-transform: uppercase; }
   .menu-page .btns .simple {
     background-color: #f7c80b; }
   .menu-page .btns .flash {
     background-color: #d94509; }
+
+.menu-page .home-content {
+  text-align: center;
+  text-align: center;
+  height: 30%;
+  font-size: 30px;
+  padding: 20px 10px; }
+  .menu-page .home-content .score {
+    text-transform: uppercase; }
+    .menu-page .home-content .score span {
+      display: block;
+      color: #3b6db9;
+      font-size: 45px; }
+
+.menu-page .modal-wrapper .FlipModal {
+  width: 95%;
+  height: 165px; }
+  .menu-page .modal-wrapper .FlipModal .modal-content.row {
+    margin-right: -5px;
+    margin-left: -5px;
+    padding: 20px 10px; }
+  .menu-page .modal-wrapper .FlipModal .card {
+    background-color: #907854;
+    height: 100%;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    animation: 0.3s zoomIn ease; }
+  .menu-page .modal-wrapper .FlipModal .col-xs-4 {
+    padding-right: 5px;
+    padding-left: 5px;
+    height: 80px;
+    line-height: 80px; }
+    .menu-page .modal-wrapper .FlipModal .col-xs-4:first-child .card {
+      background-color: #ad9674; }
+    .menu-page .modal-wrapper .FlipModal .col-xs-4:last-child .card {
+      background-color: #7D6541; }
+
+.menu-page .hide-card {
+  animation: 0.5s flipInY ease !important; }
+  .menu-page .hide-card span {
+    display: none; }
+
+.play-page {
+  height: 100%;
+  background: url("bg/bg-play.png") no-repeat;
+  background-size: cover;
+  padding: 20px; }
+  .play-page .header {
+    font-size: 25px;
+    text-transform: uppercase; }
+    .play-page .header .btn-return {
+      color: #FFFFFF;
+      display: inline-block;
+      background: url("bg/icon-return.png");
+      background-size: 100% 100%;
+      padding: 5px 10px 0px 40px; }
+    .play-page .header .hearts {
+      color: #e74c3c;
+      font-family: Arial;
+      font-weight: 600;
+      font-size: 30px; }
+      .play-page .header .hearts .heart-icon {
+        vertical-align: text-top; }
+  .play-page .score-wrapper {
+    text-align: center; }
+    .play-page .score-wrapper .title {
+      padding-top: 10px;
+      text-transform: uppercase;
+      font-size: 25px; }
+    .play-page .score-wrapper .score {
+      width: 100%;
+      max-width: 200px;
+      background-color: #f7c80b;
+      margin: auto;
+      color: #FFFFFF;
+      font-size: 30px;
+      border-bottom: 5px solid #d6ac03;
+      line-height: 50px;
+      height: 50px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px; }
+  .play-page .bottom {
+    background: #d94509;
+    color: #FFFFFF;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 22px; }
+    .play-page .bottom sup {
+      color: #f7c80b;
+      font-family: Arial;
+      font-weight: bold; }
+    .play-page .bottom .btn-help:first-child {
+      border-right: 1px solid #ee7e72; }
+    .play-page .bottom .showOne {
+      color: #421300;
+      animation: 0.5s swing ease; }
+      .play-page .bottom .showOne sup {
+        display: none; }
+  .play-page .main-game {
+    height: calc(100% - 165px);
+    padding: 20px 0; }
+    .play-page .main-game .card-wrapper {
+      max-height: 120px;
+      padding: 5px; }
+      .play-page .main-game .card-wrapper .card {
+        background-color: #ad9674;
+        height: 100%;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        color: white;
+        font-size: 37px;
+        font-family: Arial;
+        font-weight: bold;
+        text-align: center;
+        position: relative; }
+        .play-page .main-game .card-wrapper .card span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          margin: auto;
+          height: 50px;
+          line-height: 50px; }
+        .play-page .main-game .card-wrapper .card.none-card {
+          display: none; }
+      .play-page .main-game .card-wrapper.col-xs-3 {
+        width: 33.33%;
+        height: 33%; }
+      .play-page .main-game .card-wrapper.col-xs-4 {
+        width: 25%;
+        height: 25%; }
+        .play-page .main-game .card-wrapper.col-xs-4 .card {
+          font-size: 32px; }
+          .play-page .main-game .card-wrapper.col-xs-4 .card.numberSmall {
+            font-size: 20px !important; }
+      .play-page .main-game .card-wrapper.col-xs-5 {
+        width: 20%;
+        height: 20%; }
+        .play-page .main-game .card-wrapper.col-xs-5 .card {
+          font-size: 22px; }
+          .play-page .main-game .card-wrapper.col-xs-5 .card.numberSmall {
+            font-size: 15px !important; }
+
+.number1 {
+  background-color: #4071bb !important; }
+
+.number2 {
+  background-color: #f7c80b !important; }
+
+.number4 {
+  background-color: #97ce68 !important; }
+
+.number8 {
+  background-color: #04c7ce !important; }
+
+.number16 {
+  background-color: #04ce9b !important; }
+
+.number32 {
+  background-color: #ff6766 !important; }
+
+.number64 {
+  background-color: #1f7e7f !important; }
+
+.number128 {
+  background-color: #1f7f5c !important; }
+
+.number256 {
+  background-color: #5f5f5f !important; }
+
+.number512 {
+  background-color: #8560a8 !important; }
+
+.number1024 {
+  background-color: #f7a22f !important; }
+
+.number2048 {
+  background-color: #662d91 !important; }
+
+.number4096 {
+  background-color: #e74c3c !important; }
+
+.number8192 {
+  background-color: #28324e !important; }
+
+.number16384 {
+  background-color: #d1d5d8 !important; }
+
+.numberSmall {
+  font-size: 28px !important; }
+
+.numberX {
+  background: url("bg/changeAll.png") #b8312f no-repeat center !important;
+  background-size: 70% !important; }
+  .numberX span {
+    display: none !important; }
+
+.numberJ {
+  background: url("bg/joker.png") #475577 no-repeat center !important;
+  background-size: 70% !important; }
+  .numberJ span {
+    display: none !important; }
+
+.hide-card {
+  background: url("bg/icon-brain.png") #ad9674 no-repeat center !important;
+  background-size: 70% !important;
+  animation: 0.5s flipInY ease; }
+
+.show-card {
+  animation: 0.5s flipInY2 ease; }
+
+.load-card {
+  animation: 0.3s zoomIn ease; }
+
+.infoWindow {
+  position: absolute;
+  bottom: 55px;
+  text-align: center;
+  line-height: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  font-family: Arial;
+  font-weight: bold;
+  left: 0;
+  padding: 5px;
+  width: 100%; }
+
+.flash .header .hearts {
+  color: #3b6db9; }
+
+.flash .header .timeLeft {
+  animation: 0.3s pulse ease;
+  color: #d94509; }

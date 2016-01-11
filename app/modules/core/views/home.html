@@ -1,18 +1,46 @@
-<div class="menu-page" ng-click="vm.click()">
+<div class="menu-page">
 	<div class="logo">
 	    <img src="img/logo.png" alt="logo" ng-show="vm.showLogo">
 	</div>
 	<div class="btns">
-		<div class="simple col-xs-6">
-			<i class="play-icon"></i>
-			<p>Simple Mode</p>
+		<div class="simple col-xs-6" ng-click="vm.showLevels('simple')">
+			<div class="btn-wrapper">			
+				<i class="play-icon"></i>
+				<p>Simple Mode</p>
+			</div>
 		</div>
-		<div class="flash col-xs-6">
-			<i class="chrono-icon"></i>
-			<p>Flash Mode</p>
+		<div class="flash col-xs-6" ng-click="vm.showLevels('flash')">
+			<div class="btn-wrapper">			
+				<i class="chrono-icon"></i>
+				<p>Flash Mode</p>
+			</div>
 		</div>
 	</div>
-	<p id="home-content">
-	    You have successfully created an AngularJs application running within a cordova app !
-	</p>
+	<div class="home-content">
+	    <div class="score">Best Score<span>{{vm.score}}</span></div>
+	</div>
+	<div class="modal-wrapper" ng-if="vm.showLevel != ''">
+		<div class="FlipModal">
+			<div class="modal-content row">
+				<div class="col-xs-4 card-wrapper">
+					<div class="card" ng-class="{'hide-card': vm.hideCard === 'easy'}" ng-click="vm.startGame(vm.showLevel,'easy')">
+						<span>Easy</span>
+					</div>
+				</div>
+				<div class="col-xs-4 card-wrapper">
+					<div class="card" ng-class="{'hide-card': vm.hideCard === 'medium'}" ng-click="vm.startGame(vm.showLevel,'medium')">
+						<span>Meduim</span>
+					</div>
+				</div>
+				<div class="col-xs-4 card-wrapper">
+					<div class="card" ng-class="{'hide-card': vm.hideCard === 'hard'}" ng-click="vm.startGame(vm.showLevel,'hard')">
+						<span>Hard</span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer row">
+				<div class="col-xs-12"><div class="btn btn-blue" ng-click="vm.showLevel=''">Close</div></div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -8,17 +8,39 @@
  */
 angular
     .module('core')
-    .controller('HomeController', ['$scope',
-        function($scope) {
+    .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService',
+        function($scope, $rootScope, $state, ProfileService) {
         	var vm = this;
+            function goToState(to, params){
+                $state.go(to, params);
+            }
+            function firstUse(){
+                ProfileService.initLocalStorage();
+            }
+            function showLevels(mode){
+                vm.showLevel=mode;
+            }
+            function startGame(mode, level){
+                vm.hideCard = level;
+                _.delay(function(){
+                    goToState(mode,{mode:level});
+                }, 500)
+            }
+        	function init(){  
+                $rootScope.goToState = goToState;       
+                vm.showLevels = showLevels;   
+                vm.startGame = startGame;   
+                vm.showLevel = '';    
+                _.delay(function(){
+                    $scope.$apply(function(){
+                        vm.showLogo = true;
+                    })
+                }, 500);
+                if(ProfileService.isFirstUse()){
+                    firstUse();
+                }
 
-        	function init(){    		
-	        	_.delay(function(){
-	        		$scope.$apply(function(){
-	        			vm.showLogo = true;
-	        		})
-	        		console.log(vm.showLogo);
-	        	}, 500);
+                vm.score  = ProfileService.getBestScore();
         	}
         	init();
         }

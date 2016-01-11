@@ -30,6 +30,16 @@ angular
                     url: '/',
                     templateUrl: 'modules/core/views/home.html',
                     controller: 'HomeController as vm'
+                })
+                .state('simple', {
+                    url: '/simple/:mode',
+                    templateUrl: 'modules/core/views/play.html',
+                    controller: 'PlayController as vm'
+                })
+                .state('flash', {
+                    url: '/flash/:mode',
+                    templateUrl: 'modules/core/views/flash.html',
+                    controller: 'FlashController as vm'
                 });
         }
     ]);

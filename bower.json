@@ -1,5 +1,5 @@
 {
-  "name": "2xflip",
+  "name": "xflip",
   "version": "0.0.1",
   "description": "Find two pairs with the same number to get the sum",
   "dependencies": {

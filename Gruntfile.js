@@ -22,7 +22,7 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['<%= yeoman.app %>/modules/*/*.js', '<%= yeoman.app %>/modules/*/config/*.js', '<%= yeoman.app %>/modules/*/controllers/*.js', '<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/directives/*.js', '<%= yeoman.app %>/modules/*/filters/*.js'],
+                files: ['<%= yeoman.app %>/modules/*/*.js', '<%= yeoman.app %>/modules/*/config/*.js', '<%= yeoman.app %>/modules/*/controllers/*.js','<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/services/*.js', '<%= yeoman.app %>/modules/*/directives/*.js', '<%= yeoman.app %>/modules/*/filters/*.js'],
                 tasks: ['newer:jshint:all'],
                 options: {
                     livereload: true
@@ -144,7 +144,6 @@ module.exports = function(grunt) {
                     'app/lib/angular/angular.js',
                     'app/lib/angular-resource/angular-resource.js',
                     'app/lib/angular-mocks/angular-mocks.js',
-                    'app/lib/angular-cookies/angular-cookies.js',
                     'app/lib/angular-sanitize/angular-sanitize.js',
                     'app/lib/angular-animate/angular-animate.js',
                     'app/lib/angular-touch/angular-touch.js',
@@ -219,7 +218,8 @@ module.exports = function(grunt) {
                         '<%= yeoman.dist %>/app/modules/*/controllers/*.js',
                         '<%= yeoman.dist %>/app/css/**/*.css',
                         '<%= yeoman.dist %>/app/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                        '<%= yeoman.dist %>/css/fonts/*'
+                        '<%= yeoman.dist %>/css/fonts/*',
+                        '<%= yeoman.dist %>/css/bg/*',
                     ]
                 }
             }
