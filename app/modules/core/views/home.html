@@ -17,7 +17,24 @@
 		</div>
 	</div>
 	<div class="home-content">
-	    <div class="score">Best Score<span>{{vm.score}}</span></div>
+	    <div class="score row">
+	    	<div class="col-xs-12">
+	    		 High Score
+	    	</div>
+	    	<div class="col-xs-6">
+	    		Simple Mode
+	    		<span>{{vm.score}}</span>
+	    	</div>
+	    	<div class="col-xs-6">
+	    		Flash Mode
+	    		<span>{{vm.scoreFlash}}</span>
+	    	</div>
+	    </div>
+	</div>
+	<div class="footer">
+		<div class="col-xs-4"><div class="help"></div></div>
+		<div class="col-xs-4 text-center"><div class="params"></div></div>
+		<div class="col-xs-4 text-right"><div class="classement"></div></div>
 	</div>
 	<div class="modal-wrapper" ng-if="vm.showLevel != ''">
 		<div class="FlipModal">

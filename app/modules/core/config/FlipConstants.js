@@ -33,6 +33,7 @@ angular
         },
         localStorage:{
             bestScore:'bestScore',
+            bestScoreFlash:'bestScoreFlash',
             hearts:'hearts',
             showOne:'showOne',
             showAll:'showAll',

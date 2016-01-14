@@ -1,7 +1,7 @@
 .menu-page{
 	height:100%;
 	.logo{
-		height: 50%;
+		height: 45%;
 		background-color: $blue; 
 		text-align: center;
 		 position: relative; 
@@ -46,16 +46,22 @@
 .menu-page .home-content{
 	text-align:center;
     text-align: center;
-    height: 30%;
+    height: 20%;
     font-size: 30px;
-    padding: 20px 10px;
     .score{
     	text-transform: uppercase;
+    	margin:0;
+    	padding-top: 15px;
+    	.col-xs-6{
+		    font-size: 20px;
+		    color: #777;
+    	}
     	span{
 		    display: block;
 		    color: $blue;
-		    font-size: 45px;
-    	} 
+		    font-size: 36px;
+		    line-height: 45px;
+    	}
     }
 }
 .menu-page{
@@ -99,7 +105,51 @@
 		animation:0.5s flipInY ease !important;
 	}
 }
-#uiview {
-	//animation:0.5s zoomIn ease;
-
+.menu-page .footer{
+	width: 100%;
+	position:absolute;
+	bottom:0;
+	div{height:100%;}
+	.params{
+		height: 100%;
+		display: inline-block;
+		&:after{
+			content: "";
+			display: inline-block;
+			height: 50px;
+		    width: 50px;
+		    background: url("bg/settings.png") no-repeat center;
+		    background-size: 65%;
+		    background-color: #333333;
+		    border-radius: 45px;
+		}
+	}
+	.help{
+		height: 100%;
+		display: inline-block;
+		&:after{
+			content: "";
+			display: inline-block;
+			height: 50px;
+		    width: 50px;
+		    background: url("bg/help.png") no-repeat center;
+		    background-size: 75%;
+		    background-color: #333333;
+		    border-radius: 45px;
+		}
+	}
+	.classement{
+		height: 100%;
+		display: inline-block;
+		&:after{
+			content: "";
+			display: inline-block;
+		    height: 50px;
+		    width: 50px;
+		    background: url("bg/classement.png") no-repeat center;
+		    background-size: 75%;
+		    background-color: #333333;
+		    border-radius: 45px;
+		}
+	}
 }

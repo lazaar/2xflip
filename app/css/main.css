@@ -2435,7 +2435,8 @@ body {
 
 .main_wrapper, html, body, .container, #uiview {
   height: 100%;
-  padding: 0; }
+  padding: 0;
+  position: relative; }
 
 .chrono-icon {
   background: url("bg/icon-chrono.png") no-repeat center;
@@ -2524,7 +2525,7 @@ body {
 .menu-page {
   height: 100%; }
   .menu-page .logo {
-    height: 50%;
+    height: 45%;
     background-color: #3b6db9;
     text-align: center;
     position: relative; }
@@ -2564,15 +2565,20 @@ body {
 .menu-page .home-content {
   text-align: center;
   text-align: center;
-  height: 30%;
-  font-size: 30px;
-  padding: 20px 10px; }
+  height: 20%;
+  font-size: 30px; }
   .menu-page .home-content .score {
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    margin: 0;
+    padding-top: 15px; }
+    .menu-page .home-content .score .col-xs-6 {
+      font-size: 20px;
+      color: #777; }
     .menu-page .home-content .score span {
       display: block;
       color: #3b6db9;
-      font-size: 45px; }
+      font-size: 36px;
+      line-height: 45px; }
 
 .menu-page .modal-wrapper .FlipModal {
   width: 95%;
@@ -2608,6 +2614,49 @@ body {
   animation: 0.5s flipInY ease !important; }
   .menu-page .hide-card span {
     display: none; }
+
+.menu-page .footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0; }
+  .menu-page .footer div {
+    height: 100%; }
+  .menu-page .footer .params {
+    height: 100%;
+    display: inline-block; }
+    .menu-page .footer .params:after {
+      content: "";
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      background: url("bg/settings.png") no-repeat center;
+      background-size: 65%;
+      background-color: #333333;
+      border-radius: 45px; }
+  .menu-page .footer .help {
+    height: 100%;
+    display: inline-block; }
+    .menu-page .footer .help:after {
+      content: "";
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      background: url("bg/help.png") no-repeat center;
+      background-size: 75%;
+      background-color: #333333;
+      border-radius: 45px; }
+  .menu-page .footer .classement {
+    height: 100%;
+    display: inline-block; }
+    .menu-page .footer .classement:after {
+      content: "";
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      background: url("bg/classement.png") no-repeat center;
+      background-size: 75%;
+      background-color: #333333;
+      border-radius: 45px; }
 
 .play-page {
   height: 100%;
@@ -2664,8 +2713,8 @@ body {
       color: #f7c80b;
       font-family: Arial;
       font-weight: bold; }
-    .play-page .bottom .btn-help:first-child {
-      border-right: 1px solid #ee7e72; }
+    .play-page .bottom .btn-help:last-child {
+      border-left: 1px solid #ee7e72; }
     .play-page .bottom .showOne {
       color: #421300;
       animation: 0.5s swing ease; }

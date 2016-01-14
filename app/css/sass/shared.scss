@@ -25,6 +25,7 @@ body {
 .main_wrapper, html, body, .container, #uiview{
 	height: 100%;
 	padding:0;
+  position: relative;
 }
 .chrono-icon{
   background:  url('bg/icon-chrono.png') no-repeat center;

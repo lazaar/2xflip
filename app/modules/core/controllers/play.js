@@ -118,7 +118,9 @@ angular
                         _.delay(function(){
                             CardService.showAll(vm.cards);
                             $scope.$apply();
-                            ProfileService.setBestScore(vm.score);
+                            if(vm.score > highScore){
+                                ProfileService.setBestScore(vm.score);
+                            }
                         }, 100)
                         delay = 0;
                     }

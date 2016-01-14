@@ -55,7 +55,7 @@
 	    text-align: center;
 	    font-size: 22px;
 	    sup{ color:$yellow; font-family: Arial; font-weight: bold;}
-	    .btn-help:first-child{border-right:1px solid #ee7e72;}
+	    .btn-help:last-child{border-left:1px solid #ee7e72;}
 	    .showOne{ color: #421300; animation: 0.5s swing ease;sup{display:none;}}
 	}
 	.main-game{

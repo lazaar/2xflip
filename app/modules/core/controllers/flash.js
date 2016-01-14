@@ -124,6 +124,9 @@ angular
                   if (seconds < 0) {
                     vm.lose=true;
                     $scope.$apply();
+                    if(vm.score > highScore){
+                        ProfileService.setBestScoreFlash(vm.score);
+                    }
                   }
                   else {
                     _.delay(function(){
@@ -146,7 +149,7 @@ angular
                 vm.TitleScore ='score';
                 max=1;
                 vm.count = {min: '01', s:0};
-                highScore = ProfileService.getBestScore();
+                highScore = ProfileService.getBestScoreFlash();
 
                 vm.heartsDiamonds = ProfileService.getProperty('hearts');
                 var cardsTotal = Math.pow(vm.mode.cards,2);

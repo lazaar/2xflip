@@ -41,6 +41,7 @@ angular
                 }
 
                 vm.score  = ProfileService.getBestScore();
+                vm.scoreFlash  = ProfileService.getBestScoreFlash();
         	}
         	init();
         }
