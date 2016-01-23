@@ -85,6 +85,20 @@
 			    	margin:auto;
 					height: 50px;
 					line-height: 50px;
+					&.notif{					
+						top: -15px;
+						height: 29px;
+						line-height: 29px;
+						margin: 0;
+						font-size: 15px;
+						background: #FFFFFF;
+						display: inline-block;
+						width: 29px;
+						left: 62%;
+						right: 0;
+						color: $red;
+						border-radius: 90px;
+					}
 
 			    }
 			    &.none-card{
@@ -144,6 +158,9 @@
 }
 
 .show-card{
+	animation:0.5s flipInY2 ease;
+}
+.showAll-card{
 	animation:0.5s flipInY2 ease;
 }
 .load-card{

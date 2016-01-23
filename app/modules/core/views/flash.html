@@ -11,7 +11,10 @@
 	<div class="main-game row">
 		<div class="col-xs-{{vm.mode.cards}} card-wrapper" ng-repeat="(index, card) in vm.cards track by index">
 			<div class="card number{{card.value}} {{card.state}}-card" ng-click="vm.cardClicked(index)" ng-class="{'numberSmall' : card.value > 10000}">
-				<span ng-if="card.state == 'show' || card.state == 'load'">{{card.value}}</span>
+				<span ng-if="card.state != 'hide'">				
+					<span>{{card.value}}</span>
+					<span ng-if="!!card.notif" class="notif">{{card.notif + 's'}}</span>
+				</span>
 			</div>
 
 		</div>

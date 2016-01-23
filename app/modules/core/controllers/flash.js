@@ -86,13 +86,35 @@ angular
                             vm.TitleScore ='A new High score'
                         }
                         CardService.setValue(vm.cards, index2, newValue);
+
+                        if(vm.cards[index1].notif !=''){
+                            seconds += vm.cards[index1].notif;
+                        }
+                        if(vm.cards[index2].notif !=''){
+                            seconds += vm.cards[index2].notif;
+                        }
+                        if(seconds > 60) seconds=60;
                         $scope.$apply();
                         if(newValue > max){
                             max = newValue;
                         }
+
                     }, FlipConstants.delay.removeCardOnsuccess)
                     _.delay(function(){
                         CardService.loadOne(vm.cards, index1, max);
+                        vm.cards[index1].notif = '';  
+                        if(seconds < 50){                        
+                            var random = Math.random();
+                            if (random <= 0.15) {
+                                vm.cards[index1].notif = 2;
+                            }
+                            else if(random <= 0.25){
+                                vm.cards[index1].notif = 5;
+                            }
+                            else if(random <= 0.30){
+                                vm.cards[index1].notif = 10;
+                            }
+                        }
                         $scope.$apply();
                     }, FlipConstants.delay.removeCardOnsuccess + FlipConstants.delay.generateCardOnsuccess)
                     delay = FlipConstants.delay.hideOnsuccess + FlipConstants.delay.removeCardOnsuccess + FlipConstants.delay.generateCardOnsuccess;
@@ -123,6 +145,7 @@ angular
                   }
                   if (seconds < 0) {
                     vm.lose=true;
+                    CardService.showAll(vm.cards);
                     $scope.$apply();
                     if(vm.score > highScore){
                         ProfileService.setBestScoreFlash(vm.score);
@@ -155,7 +178,7 @@ angular
                 var cardsTotal = Math.pow(vm.mode.cards,2);
                 for (var i = 0; i < cardsTotal; i++) {
                     _.delay(function(){
-                        vm.cards.push( {value:FlipConstants.init.initValue, state:'show'})
+                        vm.cards.push( {value:FlipConstants.init.initValue, state:'show',  notif:''})
                         $scope.$apply();
                     }, i*FlipConstants.delay.firstShowDelay)
                 };

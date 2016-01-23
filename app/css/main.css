@@ -2747,6 +2747,19 @@ body {
           margin: auto;
           height: 50px;
           line-height: 50px; }
+          .play-page .main-game .card-wrapper .card span.notif {
+            top: -15px;
+            height: 29px;
+            line-height: 29px;
+            margin: 0;
+            font-size: 15px;
+            background: #FFFFFF;
+            display: inline-block;
+            width: 29px;
+            left: 62%;
+            right: 0;
+            color: #d94509;
+            border-radius: 90px; }
         .play-page .main-game .card-wrapper .card.none-card {
           display: none; }
       .play-page .main-game .card-wrapper.col-xs-3 {
@@ -2833,6 +2846,9 @@ body {
   animation: 0.5s flipInY ease; }
 
 .show-card {
+  animation: 0.5s flipInY2 ease; }
+
+.showAll-card {
   animation: 0.5s flipInY2 ease; }
 
 .load-card {

@@ -49,7 +49,7 @@ angular
                  return newIndex;
             }
             function hideOne(cards, index){
-                if(cards[index].state !== 'hide'){
+                if(cards[index].state !== 'hide' && cards[index].state !=='showAll'){
                     cards[index].state = 'hide';
                 }
             }
@@ -71,12 +71,17 @@ angular
             }
 
             function loadOne(cards, index, max){
-                cards[index].state = 'load';
+                if(cards[index+1 % cards.length-1].state === 'showAll'){
+                    cards[index].state = 'showAll';
+                }
+                else{
+                    cards[index].state = 'load';
+                }
                 setValue(cards, index, generateCard(max));
             }
             function showAll(cards){
                 cards.forEach(function(card){
-                    card.state = 'show';
+                    card.state = 'showAll';
                 });
             }
             function removeAll(cards){
