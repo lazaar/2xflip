@@ -40,6 +40,10 @@ angular
                     url: '/flash/:mode',
                     templateUrl: 'modules/core/views/flash.html',
                     controller: 'FlashController as vm'
+                })
+                .state('howToPlay', {
+                    url: '/howToPlay',
+                    templateUrl: 'modules/core/views/howToPlay.html'
                 });
         }
     ]);
