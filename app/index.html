@@ -27,6 +27,20 @@
 
         <div class="container">
             <section id="uiview" ui-view></section>
+
+            <div class="modal-wrapper gift-modal" ng-class="{'showModal':giftModal}" ng-if="giftModal">
+                <div class="FlipModal">
+                    <div class="modal-content">
+                        <img src="img/gift.png" class="gift-icon">
+                        <p>Your gift for today :</p>
+                        <div class="gift-title">{{gift}}</div>
+                    </div>
+                    <div class="modal-footer row">
+                        <div class="col-xs-12"><div class="btn btn-blue" ng-click="closeGift()">Close</div></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- /.container -->
     </div>

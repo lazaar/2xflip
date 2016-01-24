@@ -116,3 +116,28 @@ body {
     }
 }
 .flash .modal-content{font-size: 30px;}
+.gift-modal{
+  display: none;
+  &.showModal{display:block;}
+}
+.gift-modal  .FlipModal{
+  height: 200px;
+  .modal-content{
+    padding: 5px;
+    .gift-icon{
+      display: inline-block;
+      width: 55px;
+      vertical-align: middle;
+    }
+    p{
+      font-size: 15px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .gift-title{
+      font-size: 20px;
+      font-weight: bold;
+      color: $red;
+    }
+  }
+}

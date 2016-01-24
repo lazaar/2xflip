@@ -26,6 +26,26 @@ angular
             hideAllShuffle : 1200,
             showAllDiamonds:2000
         },
+        gift:[
+            {
+                id:1,
+                name:'showAllDiamonds',
+                localStorage:'showAll',
+                slug:'Show All Diamonds'
+            },
+            {
+                id:2,
+                name:'showOneDiamonds',
+                localStorage:'showOne',
+                slug:'Show One Diamonds'
+            },
+            {
+                id:3,
+                name:'HeartsDiamonds',
+                localStorage:'hearts',
+                slug:'Hearts Diamonds'
+            }
+        ],
         mode:{
             easy:3,
             medium:4,
@@ -37,6 +57,7 @@ angular
             hearts:'hearts',
             showOne:'showOne',
             showAll:'showAll',
+            lastDate:'lastDate'
         }
 
       
