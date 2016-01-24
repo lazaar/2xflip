@@ -2499,6 +2499,13 @@ body {
       box-shadow: none;
       border: none;
       padding: 20px; }
+      .modal-wrapper .FlipModal .modal-content .continue-wrapper {
+        margin-top: -10px; }
+        .modal-wrapper .FlipModal .modal-content .continue-wrapper .btn-continue {
+          background: #FFFFFF;
+          color: #d94509;
+          font-size: 22px;
+          border-radius: 10px; }
     .modal-wrapper .FlipModal .modal-footer {
       border: 0;
       padding: 10px 0;

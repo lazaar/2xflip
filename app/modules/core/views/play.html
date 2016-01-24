@@ -30,7 +30,15 @@
 		<div class="FlipModal">
 			<div class="modal-title">You lose !</div>
 			<div class="modal-content">
-				<p>Sorry, you don't have more hearts :(</p>
+				<p ng-if="vm.heartsDiamonds == 0">Sorry, you don't have more hearts :(</p>
+				<div ng-if="vm.heartsDiamonds == 1" class="continue-wrapper">
+					<p>Do you want to use your last heart ? </p>
+					<div class="btn btn-continue "  ng-click="vm.continueFct()">Continue</div>
+				</div>
+				<div ng-if="vm.heartsDiamonds > 1" class="continue-wrapper">
+					<p>Do you want to use one of your hearts ?</p>
+					<div class="btn btn-continue"  ng-click="vm.continueFct()">Continue</div>
+				</div>
 			</div>
 			<div class="modal-footer row">
 				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="goToState('home')">Menu</div></div>

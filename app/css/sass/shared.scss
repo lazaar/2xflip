@@ -90,6 +90,15 @@ body {
           box-shadow: none;
           border:none;
           padding: 20px;
+          .continue-wrapper{
+            margin-top:-10px;
+            .btn-continue{
+                background: #FFFFFF;
+                color: $red;
+                font-size: 22px;
+                border-radius: 10px;
+            }
+          }
       }
       .modal-footer{
         border: 0;

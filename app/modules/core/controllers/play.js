@@ -179,12 +179,23 @@ angular
                     },  2000)
                 }
             }
+            function continueFct(){
+                vm.lose = false;
+                vm.hearts = 1;
+                _.delay(function(){
+                    CardService.hideAll(vm.cards);
+                    ProfileService.propertyDecrement('hearts');
+                    vm.heartsDiamonds--;
+                    $scope.$apply();
+                }, 700)
+            }
         	function init(){
                 var mode = $state.params.mode;
                 vm.mode= {name :mode, cards: _.result(FlipConstants.mode,mode,'')}
                 vm.cardClicked = cardClicked;
                 vm.showAllFct = showAllFct;
                 vm.showOneFct = showOneFct;
+                vm.continueFct = continueFct;
                 vm.cards = [];
                 vm.infoWindow ={};
                 vm.hearts = FlipConstants.init.hearts;
