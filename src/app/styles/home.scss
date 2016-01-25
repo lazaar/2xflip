@@ -1,0 +1,155 @@
+.menu-page{
+	height:100%;
+	.logo{
+		height: 45%;
+		background-color: $blue; 
+		text-align: center;
+		 position: relative; 
+		img{ 
+			height: 80%;
+		    top: 0;
+		    position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;
+		    margin: auto;
+			&.ng-hide-remove{ animation:0.5s bounceIn ease; }
+		}
+	}
+}
+.menu-page .btns{
+	height:20%;
+	> div{
+		height: 100%;
+		text-align: center;
+		color:$white;
+		position: relative;
+		.btn-wrapper{
+			position:absolute;
+			left: 0;
+		    right: 0;
+		    top: 0;
+		    bottom: 0;
+		    margin: auto;
+    		height: 95px;
+		    font-size: 21px;
+		    text-transform: uppercase;
+		}
+	}
+	.simple{
+		background-color:$yellow;
+	}
+	.flash{
+		background-color:$red;
+	}
+}
+.menu-page .home-content{
+	text-align:center;
+    text-align: center;
+    height: 20%;
+    font-size: 30px;
+    .score{
+    	text-transform: uppercase;
+    	margin:0;
+    	padding-top: 15px;
+    	.col-xs-6{
+		    font-size: 20px;
+		    color: #777;
+    	}
+    	span{
+		    display: block;
+		    color: $blue;
+		    font-size: 36px;
+		    line-height: 45px;
+    	}
+    }
+}
+.menu-page{
+	.modal-wrapper .FlipModal{
+		width: 95%; 
+		height: 165px;
+		.modal-content.row{
+			margin-right: -5px;
+    		margin-left: -5px;
+    		padding: 20px 10px;
+		}
+		.card{
+			background-color: #907854;
+		    height: 100%;
+		    -moz-border-radius: 10px;
+		    -webkit-border-radius: 10px;
+		    border-radius: 10px;
+		    color: white;
+		    font-size: 20px;
+		    font-family: Arial;
+		    font-weight: bold;
+		    text-align: center;
+		    position: relative;
+		    animation:0.3s zoomIn ease;
+		}
+		.col-xs-4{
+			padding-right: 5px;
+		    padding-left: 5px;
+		    height: 80px;
+		    line-height: 80px;
+		    &:first-child .card{
+				background-color: #ad9674;
+		    }
+		    &:last-child .card{
+				background-color: #7D6541;
+		    }
+		}
+	}
+	.hide-card{
+		span{display:none;}
+		animation:0.5s flipInY ease !important;
+	}
+}
+.menu-page .footer{
+	width: 100%;
+	position:absolute;
+	bottom:0;
+	div{height:100%;}
+	.params{
+		height: 100%;
+		display: inline-block;
+		&:after{
+			content: "";
+			display: inline-block;
+			height: 50px;
+		    width: 50px;
+		    background: url("../assets/bg/settings.png") no-repeat center;
+		    background-size: 65%;
+		    background-color: #333333;
+		    border-radius: 45px;
+		}
+	}
+	.help{
+		height: 100%;
+		display: inline-block;
+		&:after{
+			content: "";
+			display: inline-block;
+			height: 50px;
+		    width: 50px;
+		    background: url("../assets/bg/help.png") no-repeat center;
+		    background-size: 75%;
+		    background-color: #333333;
+		    border-radius: 45px;
+		}
+	}
+	.classement{
+		height: 100%;
+		display: inline-block;
+		&:after{
+			content: "";
+			display: inline-block;
+		    height: 50px;
+		    width: 50px;
+		    background: url("../assets/bg/classement.png") no-repeat center;
+		    background-size: 75%;
+		    background-color: #333333; 
+		    border-radius: 45px;
+		}
+	}
+}
