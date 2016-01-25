@@ -22,7 +22,7 @@ body {
 .ng-invalid {
     border: 1px solid red !important;
 }
-.main_wrapper, html, body, .container, #uiview{
+.main_wrapper, html, body, .container, #uiview, .game-mobile{
 	height: 100%;
 	padding:0;
   position: relative;
@@ -115,7 +115,7 @@ body {
     }
 }
 .flash .modal-content{font-size: 30px;}
-.gift-modal{
+.gift-modal, .exit-modal{
   display: none;
   &.showModal{display:block;}
 }

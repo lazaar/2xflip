@@ -1,0 +1,41 @@
+@media (min-width: 768px){
+	.container{
+		width: 100%;
+		background: #F7F6EB;
+	}
+	.game-mobile{
+	    width: 510px;
+	    height: 90%;
+	    margin: 30px auto;
+	    border: 20px solid #333333;
+	    border-radius: 10px;
+	    background-color: #FFFFFF;
+	    max-height: 735px;
+	    overflow: hidden;
+	}
+	.desktop{
+	    background: #F7F6EB;
+	    text-align: center;
+	    font-family: Arial;
+	    font-size: 18px;
+	    .downloadApp{
+	    	p{
+				margin: 10px 0;
+				font-size: 25px;
+				color: #D94509;
+	    	}
+	    	.store{
+	    		display: inline-block;
+	    		width: 250px;
+	    		img{width:100%;}
+	    	}
+	    }
+	    .signature{
+			font-size: 12px;
+			margin: 12px 0 0 0;
+	    }
+	}
+	.close-btn{
+		display: none;
+	}
+}
