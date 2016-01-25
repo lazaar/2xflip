@@ -4,7 +4,7 @@
     angular
         .module('xflip')
         //Controleur qui gere les differentes action sur la page principale
-        .controller('MainController', function ($state, ProfileService, FlipConstants, $scope) {
+        .controller('MainController', function ($state, ProfileService, FlipConstants, $scope, $rootScope) {
 
             var vm = this;
             function goToState(to, params){
@@ -29,13 +29,22 @@
             function closeGift(){
                 vm.giftModal = false;
             }
-			function close() {
-			    navigator.app.exitApp();
+			function close(notSure) {
+                if(notSure){
+                     navigator.app.exitApp();
+                }
+                else{
+                    $rootScope.exit =true;
+                }
 			}
+            function keepInGame(){
+                $rootScope.exit =false;
+            }
 
             function init(){  
                 vm.goToState = goToState;
                 vm.closeGift = closeGift;
+                vm.keepInGame = keepInGame;
                 vm.close = close;
                 gift();
         	}

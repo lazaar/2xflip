@@ -54,6 +54,20 @@
                 </div>
             </div>
 
+
+            <div class="modal-wrapper exit-modal" ng-if="exit">
+                <div class="FlipModal">
+                    <div class="modal-title">Confirm Exit</div>
+                    <div class="modal-content">
+                        <p>Do you want to quit the game?</p>
+                    </div>
+                    <div class="modal-footer row">
+                        <div class="col-xs-6"><div class="btn btn-red "  ng-click="mainCtrl.close(true)">Yes</div></div>
+                        <div class="col-xs-6"><div class="btn btn-blue" ng-click="mainCtrl.keepInGame()">No</div></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- /.container -->
     </div>
