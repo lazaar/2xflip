@@ -1,6 +1,6 @@
 <div class="play-page">
 	<div class="header">
-		<div class="btn-return" ng-click="goToState('home')">Menu</div>
+		<div class="btn-return" ng-click="mainCtrl.goToState('home')">Menu</div>
 		<div class="hearts pull-right">{{vm.hearts}} <i class="heart-icon"></i></div>
 	</div>
 	<div class="score-wrapper">
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="modal-footer row">
-				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="goToState('home')">Menu</div></div>
+				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="mainCtrl.goToState('home')">Menu</div></div>
 				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.init()">Try Again</div></div>
 			</div>
 		</div>

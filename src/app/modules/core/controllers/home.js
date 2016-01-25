@@ -9,11 +9,8 @@
 angular
     .module('core')
     .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService','FlipConstants',
-        function($scope, $rootScope, $state, ProfileService, FlipConstants) {
+        function($scope, $rootScope, $state, ProfileService) {
         	var vm = this;
-            function goToState(to, params){
-                $state.go(to, params);
-            }
             function firstUse(){
                 ProfileService.initLocalStorage();
             }
@@ -23,33 +20,12 @@ angular
             function startGame(mode, level){
                 vm.hideCard = level;
                 _.delay(function(){
-                    goToState(mode,{mode:level});
+                    $state.go(mode,{mode:level});
                 }, 500);
             }
-            function gift(){
-                var lastDate = ProfileService.getLastDate(), 
-                today = new Date().toDateString();
-                if(lastDate !== today){
-                    var gift = FlipConstants.gift[ProfileService.generateGift()];
-                    $rootScope.gift = gift.slug;
-                    ProfileService.propertyIncrement(gift.localStorage);
-                    ProfileService.setLastDate(today);
-                    _.delay(function(){
-                        $scope.$apply(function(){
-                            $rootScope.giftModal = true;
-                        });
-                    }, 700);
-                }
-
-            }
-            function closeGift(){
-                $rootScope.giftModal = false;
-            }
-        	function init(){  
-                $rootScope.goToState = goToState;       
+        	function init(){      
                 vm.showLevels = showLevels;   
-                vm.startGame = startGame;   
-                $rootScope.closeGift = closeGift;   
+                vm.startGame = startGame;
                 vm.showLevel = '';    
                 _.delay(function(){
                     $scope.$apply(function(){
@@ -59,7 +35,6 @@ angular
                 if(ProfileService.isFirstUse()){
                     firstUse();
                 }
-                gift();
                 vm.score  = ProfileService.getBestScore();
                 vm.scoreFlash  = ProfileService.getBestScoreFlash();
         	}

@@ -1,6 +1,6 @@
 <div class="play-page flash">
 	<div class="header">
-		<div class="btn-return" ng-click="goToState('home')">Menu</div>
+		<div class="btn-return" ng-click="mainCtrl.goToState('home')">Menu</div>
 		<div class="hearts pull-right" ng-class="{'timeLeft': vm.timeLeft}">{{vm.count.min}}:<span ng-if="vm.count.s < 10">0</span>{{vm.count.s}}
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 				<p>Your score is : {{vm.score}}</p>
 			</div>
 			<div class="modal-footer row">
-				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="goToState('home')">Menu</div></div>
+				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="mainCtrl.goToState('home')">Menu</div></div>
 				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.init()">Try Again</div></div>
 			</div>
 		</div>

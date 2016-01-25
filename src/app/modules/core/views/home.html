@@ -1,6 +1,7 @@
 <div class="menu-page">
 	<div class="logo">
 	    <img src="assets/images/logo.png" alt="logo" ng-show="vm.showLogo">
+	    <div class="close-btn" ng-click="mainCtrl.close()"></div>
 	</div>
 	<div class="btns">
 		<div class="simple col-xs-6" ng-click="vm.showLevels('simple')">
@@ -32,7 +33,7 @@
 	    </div>
 	</div>
 	<div class="footer">
-		<div class="col-xs-4"><div class="help" ng-click="goToState('howToPlay')"></div></div>
+		<div class="col-xs-4"><div class="help" ng-click="mainCtrl.goBack('howToPlay')"></div></div>
 		<div class="col-xs-4 text-center"><div class="params"></div></div>
 		<div class="col-xs-4 text-right"><div class="classement"></div></div>
 	</div>

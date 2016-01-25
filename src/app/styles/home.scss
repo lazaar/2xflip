@@ -153,3 +153,12 @@
 		}
 	}
 }
+.close-btn{
+    height: 40px;
+    width: 40px;
+    background: url("../assets/bg/close.png") no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
