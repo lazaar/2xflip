@@ -57,6 +57,7 @@ angular
             hearts:'hearts',
             showOne:'showOne',
             showAll:'showAll',
+            sound:'sound',
             lastDate:'lastDate'
         }
 

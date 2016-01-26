@@ -7,6 +7,7 @@
         'ngTouch', 
         'ngSanitize', 
         'ui.bootstrap',
-        'ui.utils']);
+        'ui.utils',
+        'ngAudio']);
 
 })();

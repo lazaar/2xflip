@@ -1,6 +1,6 @@
 <div class="play-page">
 	<div class="header">
-		<div class="btn-return" ng-click="mainCtrl.goToState('home')">Menu</div>
+		<div class="btn-return" ng-click="mainCtrl.goToState('home'); mainCtrl.clickSound()">Menu</div>
 		<div class="hearts pull-right">{{vm.hearts}} <i class="heart-icon"></i></div>
 	</div>
 	<div class="score-wrapper">
@@ -16,11 +16,11 @@
 		</div>
 	</div>
 	<div class="bottom text-uppercase">
-		<div class="btn-help col-xs-6" ng-click="vm.showOneFct()" ng-class="{'showOne': vm.showOne}">
+		<div class="btn-help col-xs-6" ng-click="vm.showOneFct(); mainCtrl.clickSound()" ng-class="{'showOne': vm.showOne}">
 			Show One
 			<sup class="indict">{{vm.showOneDiamonds}}</sup>
 		</div>
-		<div class="btn-help col-xs-6" ng-click="vm.showAllFct(false)">
+		<div class="btn-help col-xs-6" ng-click="vm.showAllFct(false); mainCtrl.clickSound()">
 			Show All
 			<sup class="indict">{{vm.showAllDiamonds}}</sup>
 		</div>
@@ -33,16 +33,16 @@
 				<p ng-if="vm.heartsDiamonds == 0">Sorry, you don't have more hearts :(</p>
 				<div ng-if="vm.heartsDiamonds == 1" class="continue-wrapper">
 					<p>Do you want to use your last heart ? </p>
-					<div class="btn btn-continue "  ng-click="vm.continueFct()">Continue</div>
+					<div class="btn btn-continue "  ng-click="vm.continueFct(); mainCtrl.clickSound()">Continue</div>
 				</div>
 				<div ng-if="vm.heartsDiamonds > 1" class="continue-wrapper">
 					<p>Do you want to use one of your hearts ?</p>
-					<div class="btn btn-continue"  ng-click="vm.continueFct()">Continue</div>
+					<div class="btn btn-continue"  ng-click="vm.continueFct(); mainCtrl.clickSound()">Continue</div>
 				</div>
 			</div>
 			<div class="modal-footer row">
-				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="mainCtrl.goToState('home')">Menu</div></div>
-				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.init()">Try Again</div></div>
+				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="mainCtrl.goToState('home'); mainCtrl.clickSound()">Menu</div></div>
+				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.init(); mainCtrl.clickSound()">Try Again</div></div>
 			</div>
 		</div>
 	</div>
@@ -54,8 +54,8 @@
 				<p>Are you sure you want to show all cards for 2 seconds ? </p>
 			</div>
 			<div class="modal-footer row">
-				<div class="col-xs-6"><div class="btn btn-red "  ng-click="vm.showAll=false">No</div></div>
-				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.showAllFct(true)">Yes</div></div>
+				<div class="col-xs-6"><div class="btn btn-red "  ng-click="vm.showAll=false; mainCtrl.clickSound()">No</div></div>
+				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.showAllFct(true); mainCtrl.clickSound()">Yes</div></div>
 			</div>
 		</div>
 	</div>

@@ -1,16 +1,16 @@
 <div class="menu-page">
 	<div class="logo">
 	    <img src="assets/images/logo.png" alt="logo" ng-show="vm.showLogo">
-	    <div class="close-btn" ng-click="mainCtrl.close(false)"></div>
+	    <div class="close-btn" ng-click="mainCtrl.close(false); mainCtrl.clickSound()"></div>
 	</div>
 	<div class="btns">
-		<div class="simple col-xs-6" ng-click="vm.showLevels('simple')">
+		<div class="simple col-xs-6" ng-click="vm.showLevels('simple'); mainCtrl.clickSound()">
 			<div class="btn-wrapper">			
 				<i class="play-icon"></i>
 				<p>Simple Mode</p>
 			</div>
 		</div>
-		<div class="flash col-xs-6" ng-click="vm.showLevels('flash')">
+		<div class="flash col-xs-6" ng-click="vm.showLevels('flash'); mainCtrl.clickSound()">
 			<div class="btn-wrapper">			
 				<i class="chrono-icon"></i>
 				<p>Flash Mode</p>
@@ -33,8 +33,8 @@
 	    </div>
 	</div>
 	<div class="footer">
-		<div class="col-xs-4"><div class="help" ng-click="mainCtrl.goToState('howToPlay')"></div></div>
-		<div class="col-xs-4 text-center"><div class="params"></div></div>
+		<div class="col-xs-4"><div class="help" ng-click="mainCtrl.goToState('howToPlay'); mainCtrl.clickSound()"></div></div>
+		<div class="col-xs-4 text-center" ng-click="toggleSound(); mainCtrl.clickSound()"><div class="sound" ng-class="{'soundOff':!sound}"></div></div>
 		<div class="col-xs-4 text-right"><div class="classement"></div></div>
 	</div>
 	<div class="modal-wrapper" ng-if="vm.showLevel != ''">
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="modal-footer row">
-				<div class="col-xs-12"><div class="btn btn-blue" ng-click="vm.showLevel=''">Close</div></div>
+				<div class="col-xs-12"><div class="btn btn-blue" ng-click="vm.showLevel=''; mainCtrl.clickSound()">Close</div></div>
 			</div>
 		</div>
 	</div>

@@ -52,6 +52,12 @@ angular
            function getLastDate(){
                 return localStorage.getItem(FlipConstants.localStorage.lastDate) || new Date().toDateString();
            }
+           function getSoundState(){
+                return localStorage.getItem(FlipConstants.localStorage.sound) || true;
+           }
+            function setSoundState(value){
+                localStorage.setItem(FlipConstants.localStorage.sound, value);
+           }
             return {
                 isFirstUse   : isFirstUse,
                 initLocalStorage   : initLocalStorage,
@@ -64,6 +70,8 @@ angular
                 setLastDate          : setLastDate,
                 propertyDecrement          : propertyDecrement,
                 propertyIncrement          : propertyIncrement,
+                getSoundState          : getSoundState,
+                setSoundState          : setSoundState,
                 generateGift          : generateGift
             };
         }

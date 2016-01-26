@@ -8,8 +8,8 @@
  */
 angular
     .module('core')
-    .controller('FlashController', ['$scope','$state','CardService','FlipConstants','ProfileService',
-        function($scope,$state, CardService, FlipConstants, ProfileService) {
+    .controller('FlashController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope',
+        function($scope,$state, CardService, FlipConstants, ProfileService, $rootScope) {
         	var vm = this, opened=-1, triggerEvent = true, max=1, noClick=true, highScore, seconds;
 
 
@@ -145,9 +145,18 @@ angular
                   if(seconds<10){
                     vm.timeLeft = true;
                     $scope.$apply();
+                    if(seconds<5){
+                        if($rootScope.sound){
+                            $rootScope.audios.bip.play();
+                            $rootScope.audios.bip.volume = 0.4;
+                        }
+                    }
                   }
                   if (seconds < 0) {
                     vm.lose=true;
+                    if($rootScope.sound){
+                        navigator.vibrate(200);
+                    }
                     CardService.showAll(vm.cards);
                     $scope.$apply();
                     if(vm.score > highScore){
@@ -176,6 +185,13 @@ angular
                 max=1;
                 vm.count = {min: '01', s:0};
                 highScore = ProfileService.getBestScoreFlash();
+
+                if($rootScope.sound){
+                    $rootScope.audios.menu.stop();
+                    $rootScope.audios.game.play();
+                    $rootScope.audios.game.volume = 0.3;
+                    $rootScope.audios.game.loop = true;
+                }
 
                 vm.heartsDiamonds = ProfileService.getProperty('hearts');
                 var cardsTotal = Math.pow(vm.mode.cards,2);

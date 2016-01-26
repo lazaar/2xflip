@@ -7,8 +7,8 @@
  */
 angular
     .module('core')
-    .factory('CardService', [
-        function() {
+    .factory('CardService', ['$rootScope',
+        function($rootScope) {
             function generateCard(max){
                 var result, random = Math.random();
 
@@ -60,6 +60,10 @@ angular
                         card.state = 'hide';
                     }
                 });
+                if($rootScope.sound){
+                    $rootScope.audios.flip.play();
+                     $rootScope.audios.flip.volume = 0.4;
+                }
             }
 
             function removeOne(cards, index){
@@ -68,6 +72,10 @@ angular
 
             function showOne(cards, index){
                 cards[index].state = 'show';
+                if($rootScope.sound){
+                    $rootScope.audios.flip.play();
+                    $rootScope.audios.flip.volume = 0.4;
+                }
             }
 
             function loadOne(cards, index, max){
@@ -83,6 +91,10 @@ angular
                 cards.forEach(function(card){
                     card.state = 'showAll';
                 });
+                if($rootScope.sound){
+                    $rootScope.audios.flip.play();
+                    $rootScope.audios.flip.volume = 0.4;
+                }
             }
             function removeAll(cards){
                 cards.forEach(function(card){

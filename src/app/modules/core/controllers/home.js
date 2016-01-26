@@ -8,7 +8,7 @@
  */
 angular
     .module('core')
-    .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService','FlipConstants',
+    .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService',
         function($scope, $rootScope, $state, ProfileService) {
         	var vm = this;
             function firstUse(){
@@ -19,6 +19,9 @@ angular
             }
             function startGame(mode, level){
                 vm.hideCard = level;
+                if($rootScope.sound){
+                    $rootScope.audios.flip.play();
+                }
                 _.delay(function(){
                     $state.go(mode,{mode:level});
                 }, 500);
@@ -26,11 +29,19 @@ angular
         	function init(){      
                 vm.showLevels = showLevels;   
                 vm.startGame = startGame;
-                vm.showLevel = '';    
+                vm.showLevel = ''; 
+                $rootScope.audios.game.stop();
+                $rootScope.audios.menu.play();
+                $rootScope.audios.menu.setMuting(!$rootScope.sound);
+                $rootScope.audios.menu.loop = true;
                 _.delay(function(){
                     $scope.$apply(function(){
                         vm.showLogo = true;
                     });
+                    if($rootScope.sound){
+                        $rootScope.audios.logo.play();
+                        $rootScope.audios.logo.volume = 0.4;
+                    }
                 }, 500);
                 if(ProfileService.isFirstUse()){
                     firstUse();

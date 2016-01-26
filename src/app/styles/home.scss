@@ -110,7 +110,7 @@
 	position:absolute;
 	bottom:0;
 	div{height:100%;}
-	.params{
+	.sound{
 		height: 100%;
 		display: inline-block;
 		&:after{
@@ -118,11 +118,12 @@
 			display: inline-block;
 			height: 50px;
 		    width: 50px;
-		    background: url("../assets/bg/settings.png") no-repeat center;
+		    background: url("../assets/bg/sound.png") no-repeat center;
 		    background-size: 65%;
 		    background-color: #333333;
 		    border-radius: 45px;
 		}
+		&.soundOff:after{background-image: url("../assets/bg/soundOff.png");}
 	}
 	.help{
 		height: 100%;

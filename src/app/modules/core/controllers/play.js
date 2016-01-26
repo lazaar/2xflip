@@ -8,8 +8,8 @@
  */
 angular
     .module('core')
-    .controller('PlayController', ['$scope','$state','CardService','FlipConstants','ProfileService',
-        function($scope,$state, CardService, FlipConstants, ProfileService) {
+    .controller('PlayController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope',
+        function($scope,$state, CardService, FlipConstants, ProfileService,$rootScope) {
         	var vm = this, opened=-1, triggerEvent = true, max=1, noClick=true, highScore;
 
 
@@ -113,8 +113,15 @@ angular
                 else{
                     vm.hearts--;
                     delay = FlipConstants.delay.hideOnError;
+                     if($rootScope.sound){
+                        navigator.vibrate(200);
+                    }
                     if(vm.hearts === 0){
                         vm.lose = true;
+                        if($rootScope.sound){
+                            $rootScope.audios.over.play();
+                            $rootScope.audios.over.volume = 0.3;
+                        }
                         _.delay(function(){
                             CardService.showAll(vm.cards);
                             $scope.$apply();
@@ -124,6 +131,7 @@ angular
                         }, 100);
                         delay = 0;
                     }
+
                 }
                 _.delay(function(){
                     CardService.hideOne(vm.cards, index2);
@@ -210,6 +218,13 @@ angular
                 vm.showOneDiamonds = ProfileService.getProperty('showOne');
                 vm.heartsDiamonds = ProfileService.getProperty('hearts');
                 var cardsTotal = Math.pow(vm.mode.cards,2);
+                if($rootScope.sound){
+                    $rootScope.audios.menu.stop();
+                    $rootScope.audios.game.play();
+                    $rootScope.audios.game.volume = 0.3;
+                    $rootScope.audios.game.loop = true;
+                }
+
                 /* jshint ignore:start */
                 for (var i = 0; i < cardsTotal; i++) {
                     _.delay(function(){
