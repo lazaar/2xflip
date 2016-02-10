@@ -10,10 +10,17 @@
      * Configuration generale de l'application xflip
      * @param $logProvider
      */
-    function config($logProvider, configConstantes) {
+    function config($logProvider, configConstantes, FlipConstants, admobSvcProvider) {
 
         // Enable configConstantes
         $logProvider.debugEnabled(configConstantes.logDebug);
+         var admobid = (/(android)/i.test(navigator.userAgent)) ? FlipConstants.admob.android : FlipConstants.admob.ios;
+
+         admobSvcProvider.setOptions({
+            publisherId:          admobid.banner,
+            interstitialAdId:     admobid.inter,
+            autoShowInterstitial : false
+          });
 
     }
 

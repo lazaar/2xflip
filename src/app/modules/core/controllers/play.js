@@ -8,8 +8,8 @@
  */
 angular
     .module('core')
-    .controller('PlayController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope',
-        function($scope,$state, CardService, FlipConstants, ProfileService,$rootScope) {
+    .controller('PlayController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope','admobSvc',
+        function($scope,$state, CardService, FlipConstants, ProfileService,$rootScope, admobSvc) {
         	var vm = this, opened=-1, triggerEvent = true, max=1, noClick=true, highScore;
 
 
@@ -122,6 +122,11 @@ angular
                             $rootScope.audios.over.play();
                             $rootScope.audios.over.volume = 0.3;
                         }
+                        if(Math.random()<FlipConstants.admob.frequence.playInter){
+                            _.delay(function(){
+                                admobSvc.showInterstitialAd();
+                            }, 500);
+                        }
                         _.delay(function(){
                             CardService.showAll(vm.cards);
                             $scope.$apply();
@@ -197,7 +202,17 @@ angular
                     $scope.$apply();
                 }, 700);
             }
+            function initAdmob(){
+                if(Math.random()<FlipConstants.admob.frequence.playBanner){
+                    admobSvc.createBannerView();
+                }
+                else{
+                    admobSvc.destroyBannerView();
+                }
+                admobSvc.requestInterstitialAd();
+            }
         	function init(){
+                initAdmob();
                 var mode = $state.params.mode;
                 vm.mode= {name :mode, cards: _.result(FlipConstants.mode,mode,'')};
                 vm.cardClicked = cardClicked;

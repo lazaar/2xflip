@@ -8,8 +8,8 @@
  */
 angular
     .module('core')
-    .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService',
-        function($scope, $rootScope, $state, ProfileService) {
+    .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService','admobSvc','FlipConstants',
+        function($scope, $rootScope, $state, ProfileService, admobSvc, FlipConstants) {
         	var vm = this;
             function firstUse(){
                 ProfileService.initLocalStorage();
@@ -26,10 +26,25 @@ angular
                     $state.go(mode,{mode:level});
                 }, 500);
             }
-        	function init(){      
+            function initAdmob(){
+                if(Math.random()<FlipConstants.admob.frequence.homeBanner){
+                    admobSvc.createBannerView();
+                }
+                else{
+                    admobSvc.destroyBannerView();
+                }
+                admobSvc.requestInterstitialAd();
+                if(Math.random()<FlipConstants.admob.frequence.homeInter){
+                    _.delay(function(){
+                        admobSvc.showInterstitialAd();
+                    }, 500);
+                }
+            }
+        	function init(){
                 vm.showLevels = showLevels;   
                 vm.startGame = startGame;
                 vm.showLevel = ''; 
+                initAdmob();
                 $rootScope.audios.game.stop();
                 $rootScope.audios.menu.play();
                 $rootScope.audios.menu.setMuting(!$rootScope.sound);

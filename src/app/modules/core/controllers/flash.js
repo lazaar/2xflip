@@ -8,8 +8,8 @@
  */
 angular
     .module('core')
-    .controller('FlashController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope',
-        function($scope,$state, CardService, FlipConstants, ProfileService, $rootScope) {
+    .controller('FlashController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope','admobSvc',
+        function($scope,$state, CardService, FlipConstants, ProfileService, $rootScope, admobSvc) {
         	var vm = this, opened=-1, triggerEvent = true, max=1, noClick=true, highScore, seconds;
 
 
@@ -92,6 +92,7 @@ angular
                         }
                         if(vm.cards[index2].notif !==''){
                             seconds += vm.cards[index2].notif;
+                            vm.cards[index2].notif = '';
                         }
                         if(seconds > 60){
                           seconds=60;  
@@ -158,6 +159,11 @@ angular
                         navigator.vibrate(200);
                     }
                     CardService.showAll(vm.cards);
+                    if(Math.random()<FlipConstants.admob.frequence.flashInter){
+                        _.delay(function(){
+                            admobSvc.showInterstitialAd();
+                        }, 500);
+                    }
                     $scope.$apply();
                     if(vm.score > highScore){
                         ProfileService.setBestScoreFlash(vm.score);
@@ -172,7 +178,17 @@ angular
                     }, 1000);
                   }
             }
+            function initAdmob(){
+                if(Math.random()<FlipConstants.admob.frequence.flashBanner){
+                    admobSvc.createBannerView();
+                }
+                else{
+                    admobSvc.destroyBannerView();
+                }
+                admobSvc.requestInterstitialAd();
+            }
         	function init(){
+                initAdmob();
                 var mode = $state.params.mode;
                 vm.mode= {name :mode, cards: _.result(FlipConstants.mode,mode,'')};
                 vm.cardClicked = cardClicked;
@@ -185,7 +201,6 @@ angular
                 max=1;
                 vm.count = {min: '01', s:0};
                 highScore = ProfileService.getBestScoreFlash();
-
                 if($rootScope.sound){
                     $rootScope.audios.menu.stop();
                     $rootScope.audios.game.play();

@@ -15,6 +15,24 @@ angular
             showOneHelp : 2,
             heartsHelp : 2,
         },
+        admob:{
+            android:{
+                banner:'ca-app-pub-3935970661666157/9216170826',
+                inter:'ca-app-pub-3935970661666157/8407088821'
+            },
+            ios:{
+                banner:'ca-app-pub-3935970661666157/7145444824',
+                inter:'ca-app-pub-3935970661666157/8622178028'
+            },
+            frequence:{
+                homeBanner: 0.8,
+                playBanner: 0.5,
+                flashBanner: 0.5,
+                homeInter: 0.2,
+                playInter: 0.66,
+                flashInter: 0.66
+            }
+        },
         delay:{
             firstShowDelay : 60,
             firstHideAll : 300,

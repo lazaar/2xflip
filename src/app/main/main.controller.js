@@ -52,8 +52,7 @@
                     $rootScope.audios.click.volume = 0.3;
                 }
             }
-
-            function init(){  
+            function init(){ 
                 vm.goToState = goToState;
                 vm.closeGift = closeGift;
                 vm.keepInGame = keepInGame;
