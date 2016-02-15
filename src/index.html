@@ -36,7 +36,7 @@
 
     <!-- =================== Main =================== -->
  
-    <div role="main" class="main_wrapper">
+    <div role="main" class="main_wrapper" ng-class="{'oldVersion':isOldVersion}">
 
         <div class="container">
             <div class="game-mobile" ng-class="{'admob':admob}">            
@@ -68,6 +68,34 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="modal-wrapper modal-first" ng-class="{'showModal':showFacebookLogin}"  ng-if="showFacebookLogin">
+                    <div class="FlipModal">
+                        <div class="modal-title">Login with Facebook</div>
+                        <div class="modal-content">
+                            <p>Login with your facebook account and receive a nice gift</p>
+                        </div>
+                        <div class="modal-footer row">
+                            <div class="col-xs-6"><div class="btn btn-blue "  ng-click="loginFacebook(); mainCtrl.clickSound()">Log In</div></div>
+                            <div class="col-xs-6"><div class="btn btn-red" ng-click="showFacebookLogin=false; mainCtrl.clickSound()">Close</div></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-wrapper gift-modal" ng-class="{'showModal':giftFacebook != ''}" ng-if="giftFacebook != '' ">
+                    <div class="FlipModal">
+                        <div class="modal-content">
+                            <img src="assets/images/gift.png" class="gift-icon">
+                            <p>Thanks <span ng-if="userImg != ''">{{userName}}</span>, Your gift is :</p>
+                            <div class="gift-title">{{giftFacebook}}</div>
+                        </div>
+                        <div class="modal-footer row">
+                            <div class="col-xs-12"><div class="btn btn-blue" ng-click="giftFacebook='';">Close</div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="hidden-xs desktop">
@@ -83,6 +111,7 @@
                         <a href="#APP_STORE" target="_blank"><img src="assets/images/appStore.png" alt="app store"></a>
                     </div>
                 </div>
+                <div id='fb-root'></div>
                 <div class="signature">Created by LAZAAR Ilyass</div>
             </div>
 

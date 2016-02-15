@@ -8,8 +8,8 @@
  */
 angular
     .module('core')
-    .controller('HomeController', ['$scope','$rootScope', '$state','ProfileService','admobSvc','FlipConstants',
-        function($scope, $rootScope, $state, ProfileService, admobSvc, FlipConstants) {
+    .controller('HomeController', ['$scope','$rootScope', '$state','$log','$q','FacebookService','ProfileService','admobSvc','FlipConstants',
+        function($scope, $rootScope, $state,$log,$q,FacebookService, ProfileService, admobSvc, FlipConstants) {
         	var vm = this;
             function firstUse(){
                 ProfileService.initLocalStorage();
@@ -19,6 +19,9 @@ angular
             }
             function startGame(mode, level){
                 vm.hideCard = level;
+                if(!!window.cordova && device.platform ==='Android' && parseFloat(device.version)<4.4){//jshint ignore:line
+                    $rootScope.isOldVersion =true;
+                }
                 if($rootScope.sound){
                     $rootScope.audios.flip.play();
                 }
@@ -40,11 +43,32 @@ angular
                     }, 500);
                 }
             }
+
+            function loginFacebook(){
+                $log.debug('login');
+                FacebookService.loginFacebook();
+            }
+            function shareFacebook(){
+                var content={
+                    name: FlipConstants.contentShare[Math.floor(Math.random()*FlipConstants.contentShare.length)],
+                    caption: '2xFlip Available for Android and iOS',
+                    description: 'Are you ready for a challenge ?'
+                };
+                FacebookService.shareFacebook(content);
+                    /*facebookConnectPlugin.showDialog(
+                    {
+                      method: 'apprequests',
+                      message:'hey you'
+                    },function(response){
+                        console.log(response);
+                    },function(response){
+                        console.log(response);
+                    }); */
+            }
         	function init(){
                 vm.showLevels = showLevels;   
                 vm.startGame = startGame;
                 vm.showLevel = ''; 
-                initAdmob();
                 $rootScope.audios.game.stop();
                 $rootScope.audios.menu.play();
                 $rootScope.audios.menu.setMuting(!$rootScope.sound);
@@ -57,11 +81,19 @@ angular
                         $rootScope.audios.logo.play();
                         $rootScope.audios.logo.volume = 0.4;
                     }
+                    FacebookService.isConnectedFacebook();
                 }, 500);
                 if(ProfileService.isFirstUse()){
                     firstUse();
+                    $rootScope.showFacebookLogin = true;
+                    FacebookService.setFacebookModal(new Date().toDateString());
+                }
+                else{
+                    initAdmob();
                 }
                 vm.score  = ProfileService.getBestScore();
+                $rootScope.loginFacebook  = loginFacebook;
+                vm.shareFacebook  = shareFacebook;
                 vm.scoreFlash  = ProfileService.getBestScoreFlash();
         	}
         	init();

@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="modal-wrapper bounceInRight" ng-if="vm.lose">
+	<div class="modal-wrapper bounceInRight result-modal" ng-if="vm.lose">
 		<div class="FlipModal">
 			<div class="modal-title">You lose !</div>
 			<div class="modal-content">
@@ -43,6 +43,7 @@
 			<div class="modal-footer row">
 				<div class="col-xs-6"><div class="btn btn-yellow "  ng-click="mainCtrl.goToState('home'); mainCtrl.clickSound()">Menu</div></div>
 				<div class="col-xs-6"><div class="btn btn-blue" ng-click="vm.init(); mainCtrl.clickSound()">Try Again</div></div>
+				<div class="col-xs-12 share-facebook" ng-click="vm.shareFacebook()">{{vm.textShare}}</div>
 			</div>
 		</div>
 	</div>

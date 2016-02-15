@@ -5,7 +5,7 @@
 		background-color: $blue; 
 		text-align: center;
 		 position: relative; 
-		img{ 
+		> img{ 
 			height: 80%;
 		    top: 0;
 		    position: absolute;
@@ -158,8 +158,39 @@
     height: 40px;
     width: 40px;
     background: url("../assets/bg/close.png") no-repeat center;
-    background-size: 100%;
+    background-size: 100% ;
     position: absolute;
     right: 10px;
     top: 10px;
 }
+.facebook-btn{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    .icon{
+	    height: 38px;
+	    width: 18px;
+	    background: url("../assets/bg/facebook.png") no-repeat center;
+	    background-size: 100% 100%;
+	    display: inline-block;
+    }
+    .text{
+    	display: inline-block;
+	    line-height: 40px;
+	    margin: 0;
+	    vertical-align: top;
+	    color: #FFFFFF;
+	    font-size: 20px;
+	    margin-left: 12px;
+    }
+    img{ width: 40px;}
+}
+.modal-first .FlipModal .modal-title{
+    background: #3C5997;
+    font-size: 22px;
+    padding: 10px 0;
+}
+.menu-page .modal-first .FlipModal{
+	 height: 200px;
+}
+.modal-first .FlipModal .modal-content{    font-size: 18px;}

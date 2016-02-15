@@ -58,6 +58,10 @@
                 vm.keepInGame = keepInGame;
                 vm.clickSound = clickSound;
                 vm.close = close;
+                $rootScope.isOldVersion =false;
+                $rootScope.userName = 'Log in'; 
+                $rootScope.userImg = ''; 
+                $rootScope.giftFacebook = ''; 
                 $rootScope.audios = {
                     menu: ngAudio.load('assets/sounds/menu.mp3'),
                     flip: ngAudio.load('assets/sounds/flap.ogg'),

@@ -8,6 +8,8 @@
 angular
     .module('core')
     .constant('FlipConstants', {
+        FACEBOOK_APP_ID : '710594159019157',
+        sharePicture:'https://lh3.googleusercontent.com/-NLrQAWucQKk/VsERBdxKB9I/AAAAAAAABQE/Nuq0kHx9XgU/s346/tmp.png',
         init:{
             hearts : 3,
             initValue : 1,
@@ -15,6 +17,12 @@ angular
             showOneHelp : 2,
             heartsHelp : 2,
         },
+        contentShare:[
+            '2xFlip - I really like this game',
+            'Exercise Your Brain with 2xFlip',
+            '2xFlip - Test and practice your visual memory skills',
+            '2xFlip a game you should play :)'
+        ],
         admob:{
             android:{
                 banner:'ca-app-pub-3935970661666157/9216170826',
@@ -70,6 +78,8 @@ angular
             hard:5
         },
         localStorage:{
+            facebookUser:'facebookUser',
+            facebookModalDate:'facebookModalDate',
             bestScore:'bestScore',
             bestScoreFlash:'bestScoreFlash',
             hearts:'hearts',

@@ -8,10 +8,10 @@
  */
 angular
     .module('core')
-    .controller('PlayController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope','admobSvc',
-        function($scope,$state, CardService, FlipConstants, ProfileService,$rootScope, admobSvc) {
+    .controller('PlayController', ['$scope','$state','$q','FacebookService','CardService','FlipConstants','ProfileService','$rootScope','admobSvc',
+        function($scope,$state,$q,FacebookService, CardService, FlipConstants, ProfileService,$rootScope, admobSvc) {
         	var vm = this, opened=-1, triggerEvent = true, max=1, noClick=true, highScore;
-
+            var postTitle;
 
             function cardClicked(index){
                 if(vm.showOne){
@@ -130,8 +130,11 @@ angular
                         _.delay(function(){
                             CardService.showAll(vm.cards);
                             $scope.$apply();
+                            postTitle = vm.score  + ' it\'s my new score in 2xFlip';
                             if(vm.score > highScore){
                                 ProfileService.setBestScore(vm.score);
+                                vm.textShare ='Share your new high score';
+                                postTitle = vm.score  + ' Yeah ! it\'s my new high score';
                             }
                         }, 100);
                         delay = 0;
@@ -202,6 +205,14 @@ angular
                     $scope.$apply();
                 }, 700);
             }
+            function shareFacebook(){
+                var content={
+                      name: postTitle,
+                      caption: '2xFlip Available for Android and iOS',
+                      description: 'Try to Beat my score :)'
+                };
+                FacebookService.shareFacebook(content);
+            }
             function initAdmob(){
                 if(Math.random()<FlipConstants.admob.frequence.playBanner){
                     admobSvc.createBannerView();
@@ -218,6 +229,7 @@ angular
                 vm.cardClicked = cardClicked;
                 vm.showAllFct = showAllFct;
                 vm.showOneFct = showOneFct;
+                vm.shareFacebook = shareFacebook;
                 vm.continueFct = continueFct;
                 vm.cards = [];
                 vm.infoWindow ={};
@@ -227,6 +239,7 @@ angular
                 vm.showAll = false;
                 vm.showOne  = false;
                 vm.TitleScore ='score';
+                vm.textShare ='Share your score';
                 max=1;
                 highScore = ProfileService.getBestScore();
                 vm.showAllDiamonds = ProfileService.getProperty('showAll');

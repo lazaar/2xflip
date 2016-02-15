@@ -115,12 +115,12 @@ body {
     }
 }
 .flash .modal-content{font-size: 30px;}
-.gift-modal, .exit-modal{
+.gift-modal, .exit-modal, .modal-first{
   display: none;
   &.showModal{display:block;}
 }
-.gift-modal  .FlipModal{
-  height: 200px;
+.modal-wrapper.gift-modal  .FlipModal{
+  height: 200px !important;
   .modal-content{
     padding: 5px;
     .gift-icon{

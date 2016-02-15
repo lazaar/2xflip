@@ -8,10 +8,10 @@
  */
 angular
     .module('core')
-    .controller('FlashController', ['$scope','$state','CardService','FlipConstants','ProfileService','$rootScope','admobSvc',
-        function($scope,$state, CardService, FlipConstants, ProfileService, $rootScope, admobSvc) {
+    .controller('FlashController', ['$scope','$state','FacebookService','$q','CardService','FlipConstants','ProfileService','$rootScope','admobSvc',
+        function($scope,$state, FacebookService, $q, CardService, FlipConstants, ProfileService, $rootScope, admobSvc) {
         	var vm = this, opened=-1, triggerEvent = true, max=1, noClick=true, highScore, seconds;
-
+            var postTitle;
 
             function cardClicked(index){  
                 if(seconds===60){
@@ -165,8 +165,11 @@ angular
                         }, 500);
                     }
                     $scope.$apply();
+                    postTitle = vm.score  + ' it\'s my new Flash score in 2xFlip';
                     if(vm.score > highScore){
                         ProfileService.setBestScoreFlash(vm.score);
+                        vm.textShare ='Share your new high score';
+                        postTitle = vm.score  + 'Yeah ! it\'s my new high score in Flash Mode';
                     }
                   }
                   else {
@@ -177,6 +180,15 @@ angular
                         initCountDown(false);
                     }, 1000);
                   }
+            }
+            
+            function shareFacebook(){
+                var content={
+                      name: postTitle,
+                      caption: '2xFlip Available for Android and iOS',
+                      description: 'Try to Beat my score :)'
+                };
+                FacebookService.shareFacebook(content);
             }
             function initAdmob(){
                 if(Math.random()<FlipConstants.admob.frequence.flashBanner){
@@ -189,6 +201,7 @@ angular
             }
         	function init(){
                 initAdmob();
+                vm.shareFacebook = shareFacebook;
                 var mode = $state.params.mode;
                 vm.mode= {name :mode, cards: _.result(FlipConstants.mode,mode,'')};
                 vm.cardClicked = cardClicked;
@@ -198,6 +211,7 @@ angular
                 seconds=60;
                 vm.timeLeft = false;
                 vm.TitleScore ='score';
+                vm.textShare ='Share your score';
                 max=1;
                 vm.count = {min: '01', s:0};
                 highScore = ProfileService.getBestScoreFlash();
