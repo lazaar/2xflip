@@ -65,7 +65,6 @@ angular
                 var authResponse = response.authResponse;
                 facebookConnectPlugin.api('/me?fields=scores,picture,name,first_name,friends&access_token=' + authResponse.accessToken, null,
                   function (profileInfo) {
-                    console.log(profileInfo);
                     var giftGen = FlipConstants.gift[ProfileService.generateGift()];
                     $rootScope.giftFacebook = giftGen.slug;
                     ProfileService.propertyIncrement(giftGen.localStorage);
