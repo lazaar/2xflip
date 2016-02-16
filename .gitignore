@@ -10,4 +10,5 @@ src/app/constants/configConstantes.js
 .sass-cache
 .tmp
 .idea
+release
 www

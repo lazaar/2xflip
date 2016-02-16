@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.devlaz.xflip" version="2.0" xmlns="http://www.w3.org/ns/widgets">
+<widget id="com.gamelaz.xflip" version="2.0" xmlns="http://www.w3.org/ns/widgets">
     <name>2xflip</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        2x Flip  is a memory game, you should add numbers with the same values to get the sum, You have only 3 chances :)
     </description>
     <author email="ilyass.lazaar@gmail.com" href="">
         Laz dev

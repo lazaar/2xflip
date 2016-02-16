@@ -92,6 +92,13 @@
                 $rootScope.toggleSound = toggleSound;
                 $rootScope.sound = ProfileService.getSoundState()==='true';
                 gift();
+                if(!!window.cordova && device.platform ==='Android'){//jshint ignore:line
+                    $rootScope.platformSlug ='Android';
+                }               
+                else if(!!window.cordova && device.platform ==='iOS'){//jshint ignore:line
+                    $rootScope.platformSlug ='ios';
+                }
+                navigator.splashscreen.hide();
 
                 if (typeof window.cordova === 'object') {
                     document.addEventListener('pause', function () {
@@ -103,9 +110,19 @@
                         $rootScope.isPaused = false;
                         if($state.current.name === 'home' || $state.current.name === 'howToPlay'){
                             $rootScope.audios.menu.play();
+                            if(!$rootScope.sound){
+                                $rootScope.audios.menu.setVolume(0.0);
+                            }else{
+                                $rootScope.audios.menu.setVolume(1.0);
+                            }
                         }
-                        else{
+                        else if($state.current.name === 'simple' || $state.current.name === 'flash'){
                             $rootScope.audios.game.play();
+                            if(!$rootScope.sound){
+                                $rootScope.audios.game.setVolume(0.0);
+                            }else{
+                                $rootScope.audios.game.setVolume(1.0);
+                            }
                         }
                     }, false);
                 }

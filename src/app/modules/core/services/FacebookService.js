@@ -38,6 +38,7 @@ angular
                         $rootScope.userImg = _.result(profileInfo,'picture.data.url',''); 
                         $rootScope.isConnected = true;
                         $rootScope.showFacebookLogin = false;
+                        $rootScope.$apply();
                     }
                     else{
                         $rootScope.isConnected = false;

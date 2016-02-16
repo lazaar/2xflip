@@ -79,8 +79,8 @@ angular
                         $rootScope.audios.logo.play();
                         $rootScope.audios.menu.setVolume(0.4);
                     }
-                    FacebookService.isConnectedFacebook();
                 }, 500);
+                FacebookService.isConnectedFacebook();
                 if(ProfileService.isFirstUse()){
                     firstUse();
                     $rootScope.showFacebookLogin = true;
