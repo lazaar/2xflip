@@ -48,6 +48,10 @@ angular
                 $log.debug('login');
                 FacebookService.loginFacebook();
             }
+            function inviteFriendsFacebook(){
+                $log.debug('inviteFriendsFacebook');
+                FacebookService.inviteFriendsFacebook();
+            }
             function shareFacebook(){
                 var content={
                     name: FlipConstants.contentShare[Math.floor(Math.random()*FlipConstants.contentShare.length)],
@@ -55,31 +59,25 @@ angular
                     description: 'Are you ready for a challenge ?'
                 };
                 FacebookService.shareFacebook(content);
-                    /*facebookConnectPlugin.showDialog(
-                    {
-                      method: 'apprequests',
-                      message:'hey you'
-                    },function(response){
-                        console.log(response);
-                    },function(response){
-                        console.log(response);
-                    }); */
             }
         	function init(){
                 vm.showLevels = showLevels;   
                 vm.startGame = startGame;
                 vm.showLevel = ''; 
-                $rootScope.audios.game.stop();
-                $rootScope.audios.menu.play();
-                $rootScope.audios.menu.setMuting(!$rootScope.sound);
-                $rootScope.audios.menu.loop = true;
+                $rootScope.audios.game.pause();
+                $rootScope.audios.menu.play({ playAudioWhenScreenIsLocked : false });
+                if(!$rootScope.sound){
+                    $rootScope.audios.menu.setVolume(0.0);
+                }else{
+                    $rootScope.audios.menu.setVolume(1.0);
+                }
                 _.delay(function(){
                     $scope.$apply(function(){
                         vm.showLogo = true;
                     });
                     if($rootScope.sound){
                         $rootScope.audios.logo.play();
-                        $rootScope.audios.logo.volume = 0.4;
+                        $rootScope.audios.menu.setVolume(0.4);
                     }
                     FacebookService.isConnectedFacebook();
                 }, 500);
@@ -93,6 +91,7 @@ angular
                 }
                 vm.score  = ProfileService.getBestScore();
                 $rootScope.loginFacebook  = loginFacebook;
+                vm.inviteFriendsFacebook  = inviteFriendsFacebook;
                 vm.shareFacebook  = shareFacebook;
                 vm.scoreFlash  = ProfileService.getBestScoreFlash();
         	}

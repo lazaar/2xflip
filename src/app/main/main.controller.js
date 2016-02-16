@@ -4,7 +4,7 @@
     angular
         .module('xflip')
         //Controleur qui gere les differentes action sur la page principale
-        .controller('MainController', function ($state, ProfileService, FlipConstants, $scope, $rootScope, ngAudio) {
+        .controller('MainController', function ($state, ProfileService, FlipConstants, $scope, $rootScope) {
 
             var vm = this;
 
@@ -43,13 +43,17 @@
             }
             function toggleSound(){
                 $rootScope.sound = !$rootScope.sound;
-                ProfileService.setSoundState($rootScope.sound );
-                $rootScope.audios.menu.setMuting(!$rootScope.sound);
+                ProfileService.setSoundState($rootScope.sound);
+                if(!$rootScope.sound){
+                    $rootScope.audios.menu.setVolume(0.0);
+                }else{
+                    $rootScope.audios.menu.setVolume(1.0);
+                }
             }
             function clickSound(){
                 if($rootScope.sound){
                     $rootScope.audios.click.play();
-                    $rootScope.audios.click.volume = 0.3;
+                    $rootScope.audios.click.setVolume(0.3);
                 }
             }
             function init(){ 
@@ -62,18 +66,49 @@
                 $rootScope.userName = 'Log in'; 
                 $rootScope.userImg = ''; 
                 $rootScope.giftFacebook = ''; 
-                $rootScope.audios = {
-                    menu: ngAudio.load('assets/sounds/menu.mp3'),
-                    flip: ngAudio.load('assets/sounds/flap.ogg'),
-                    logo: ngAudio.load('assets/sounds/flag.mp3'),
-                    click: ngAudio.load('assets/sounds/click.ogg'),
-                    game: ngAudio.load('assets/sounds/game.wav'),
-                    over: ngAudio.load('assets/sounds/over.wav'),
-                    bip: ngAudio.load('assets/sounds/bip.wav')
-                };
+                /* jshint ignore:start */
+                var path='';
+                    if(!!window.cordova && device.platform ==='Android'){
+                        path='/android_asset/www/';
+                    }
+                    $rootScope.audios = {
+                        menu: new Media(path + 'assets/sounds/menu.mp3', function(){}, function () {}, function(status){
+                             if( status==Media.MEDIA_STOPPED && !$rootScope.isPaused)  {
+                               $rootScope.audios.menu.play();
+                            }
+                        }),
+                        flip: new Media(path + 'assets/sounds/flap.ogg'),
+                        logo: new Media(path + 'assets/sounds/flag.mp3'),
+                        click: new Media(path + 'assets/sounds/click.ogg'),
+                        game: new Media(path + 'assets/sounds/game.wav', function(){}, function(){}, function(status){
+                             if( status==Media.MEDIA_STOPPED && !$rootScope.isPaused) {
+                                $rootScope.audios.game.play();
+                            }
+                        }),
+                        over: new Media(path + 'assets/sounds/over.wav'),
+                        bip: new Media(path + 'assets/sounds/bip.wav')
+                    };
+                /* jshint ignore:end */
                 $rootScope.toggleSound = toggleSound;
                 $rootScope.sound = ProfileService.getSoundState()==='true';
                 gift();
+
+                if (typeof window.cordova === 'object') {
+                    document.addEventListener('pause', function () {
+                        $rootScope.audios.menu.pause();
+                        $rootScope.audios.game.pause();
+                        $rootScope.isPaused = true;
+                    }, false);
+                    document.addEventListener('resume', function () {
+                        $rootScope.isPaused = false;
+                        if($state.current.name === 'home' || $state.current.name === 'howToPlay'){
+                            $rootScope.audios.menu.play();
+                        }
+                        else{
+                            $rootScope.audios.game.play();
+                        }
+                    }, false);
+                }
         	}
         	init();
             

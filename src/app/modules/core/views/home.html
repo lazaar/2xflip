@@ -2,10 +2,14 @@
 	<div class="logo">
 	    <img src="assets/images/logo.png" alt="logo" ng-show="vm.showLogo">
 	    <div class="close-btn" ng-click="mainCtrl.close(false); mainCtrl.clickSound()"></div>
-	    <div class="facebook-btn" ng-click="loginFacebook()">
+	    <div class="facebook-btn" ng-click="loginFacebook(); mainCtrl.clickSound()">
 	    	<span class="icon" ng-if="userImg === ''"></span>
 	    	<img ng-src="{{userImg}}" ng-if="userImg != ''">
 	    	<p class="text">{{userName}}</p>
+	    </div>
+	    <div class="friends-btn" ng-click="vm.inviteFriendsFacebook(); mainCtrl.clickSound()">
+	    	<span class="icon"></span>
+	    	<p class="text">Friends</p>
 	    </div>
 	</div>
 	<div class="btns">

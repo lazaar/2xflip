@@ -13,7 +13,7 @@ angular
                 var result, random = Math.random();
 
                 if (random <= 0.34) { // 34% --> ramdon number
-                  result = Math.pow(2,Math.floor(random * 1/0.34 * (Math.log2(max)-1)));
+                  result = Math.pow(2,Math.floor(random * 1/0.34 * (Math.log(max)/Math.log(2)-1)));
                 }else if (random <= 0.59) { // 25% --> 1
                   result = 1;
                 } else if (random <= 0.84) { // 25% --> 2

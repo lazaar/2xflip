@@ -102,6 +102,25 @@ angular
                       link:'https://apps.facebook.com/710594159019157/?fb_source=feed'
                     },function(){},function(){}); 
             }
+            function inviteFriendsFacebook(){
+                if (!$rootScope.isConnected) {
+                    facebookConnectPlugin.login(['public_profile', 'user_friends'], function(response){
+                        fbLoginSuccess(response);
+                        inviteFriends();
+                    }, function(){});
+                }
+                else{      
+                        inviteFriends();
+                }
+
+            } 
+            function inviteFriends(){
+                    facebookConnectPlugin.showDialog(
+                    {
+                      method: 'apprequests',
+                      message:'I invite you to play this nice a game'
+                    },function(){},function(){}); 
+            }
             return {
                 setUser   : setUser,
                 getProfileInfo   : getProfileInfo,
@@ -110,7 +129,8 @@ angular
                 showFacebookModal   : showFacebookModal,
                 isConnectedFacebook   : isConnectedFacebook,
                 loginFacebook: loginFacebook,
-                shareFacebook:shareFacebook
+                shareFacebook:shareFacebook,
+                inviteFriendsFacebook:inviteFriendsFacebook
             };
         }
     ]);

@@ -14,9 +14,11 @@
 		  	goBack($state);
 		  }, false);
     }
-	function goBack($state) {
+	function goBack($state,$rootScope) {
 	    if($state.current.name==='home'){
 	    	navigator.app.exitApp();
+	    	$rootScope.audios.menu.pause();
+            $rootScope.audios.game.pause();
 	    }
 	    else{
 	    	$state.go('home');

@@ -120,7 +120,7 @@ angular
                         vm.lose = true;
                         if($rootScope.sound){
                             $rootScope.audios.over.play();
-                            $rootScope.audios.over.volume = 0.3;
+                            $rootScope.audios.over.setVolume(0.3);
                         }
                         if(Math.random()<FlipConstants.admob.frequence.playInter){
                             _.delay(function(){
@@ -149,7 +149,7 @@ angular
                     }
                     triggerEvent = true;
                     $scope.$apply();
-                }, delay);
+                }, delay-50);
             }
             function showAllFct(isSure){
                 if(vm.showAllDiamonds> 0){                
@@ -247,10 +247,9 @@ angular
                 vm.heartsDiamonds = ProfileService.getProperty('hearts');
                 var cardsTotal = Math.pow(vm.mode.cards,2);
                 if($rootScope.sound){
-                    $rootScope.audios.menu.stop();
-                    $rootScope.audios.game.play();
-                    $rootScope.audios.game.volume = 0.3;
-                    $rootScope.audios.game.loop = true;
+                    $rootScope.audios.menu.pause();
+                    $rootScope.audios.game.play({ playAudioWhenScreenIsLocked : false });
+                    $rootScope.audios.game.setVolume(0.3);
                 }
 
                 /* jshint ignore:start */

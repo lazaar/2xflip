@@ -8,7 +8,6 @@
         'ngSanitize', 
         'ui.bootstrap',
         'ui.utils',
-        'ngAudio',
         'admobModule']);
 
 })();

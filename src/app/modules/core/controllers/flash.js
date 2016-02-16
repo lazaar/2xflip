@@ -149,7 +149,7 @@ angular
                     if(seconds<5){
                         if($rootScope.sound){
                             $rootScope.audios.bip.play();
-                            $rootScope.audios.bip.volume = 0.4;
+                            $rootScope.audios.bip.setVolume(0.4);
                         }
                     }
                   }
@@ -216,10 +216,9 @@ angular
                 vm.count = {min: '01', s:0};
                 highScore = ProfileService.getBestScoreFlash();
                 if($rootScope.sound){
-                    $rootScope.audios.menu.stop();
-                    $rootScope.audios.game.play();
-                    $rootScope.audios.game.volume = 0.3;
-                    $rootScope.audios.game.loop = true;
+                    $rootScope.audios.menu.pause();
+                    $rootScope.audios.game.play({ playAudioWhenScreenIsLocked : false });
+                    $rootScope.audios.game.setVolume(0.3);
                 }
 
                 vm.heartsDiamonds = ProfileService.getProperty('hearts');
