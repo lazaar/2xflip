@@ -138,6 +138,9 @@ angular
             }
 
             function initCountDown(first){
+                if($state.current.name!=='flash'){
+                    return;
+                }
                 if(first){
                     vm.count = {min: '00', s:59};
                     seconds=59;

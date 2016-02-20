@@ -77,10 +77,10 @@ angular
                     });
                     if($rootScope.sound){
                         $rootScope.audios.logo.play();
-                        $rootScope.audios.menu.setVolume(0.4);
+                        $rootScope.audios.logo.setVolume(0.5);
                     }
-                }, 500);
                 FacebookService.isConnectedFacebook();
+                }, 500);
                 if(ProfileService.isFirstUse()){
                     firstUse();
                     $rootScope.showFacebookLogin = true;

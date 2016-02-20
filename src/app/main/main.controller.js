@@ -77,9 +77,9 @@
                                $rootScope.audios.menu.play();
                             }
                         }),
-                        flip: new Media(path + 'assets/sounds/flap.ogg'),
+                        flip: new Media(path + 'assets/sounds/flap.mp3'),
                         logo: new Media(path + 'assets/sounds/flag.mp3'),
-                        click: new Media(path + 'assets/sounds/click.ogg'),
+                        click: new Media(path + 'assets/sounds/click.mp3'),
                         game: new Media(path + 'assets/sounds/game.wav', function(){}, function(){}, function(status){
                              if( status==Media.MEDIA_STOPPED && !$rootScope.isPaused) {
                                 $rootScope.audios.game.play();
