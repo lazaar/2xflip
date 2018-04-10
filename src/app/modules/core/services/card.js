@@ -78,14 +78,38 @@ angular
                 }
             }
 
+            function validNumber(values, newValue){
+                var result = values.indexOf(newValue) === -1 && newValue !== 'X' && newValue !== 'J';
+                if(result){
+                    for (var i = 0; i < values.length; i++) {
+                        if(result[i] ==='J'){
+                            return false;
+                        }
+                        for (var j = i+1; j < values.length; j++) {
+                            if(values[i] === values[j]){
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                return result;
+            }
+
             function loadOne(cards, index, max){
+                cards[index].value = -1;
                 if(cards[index+1 % cards.length-1].state === 'showAll'){
                     cards[index].state = 'showAll';
                 }
                 else{
                     cards[index].state = 'load';
                 }
-                setValue(cards, index, generateCard(max));
+                var newValue;
+                var values = _.map(cards, 'value');
+                do{
+                    newValue = generateCard(max);
+                }while(validNumber(values, newValue));
+                setValue(cards, index, newValue);
             }
             function showAll(cards){
                 cards.forEach(function(card){
@@ -126,6 +150,7 @@ angular
                 shuffleCard   : shuffleCard,
                 hideOne   : hideOne,
                 hideAll   : hideAll,
+                validNumber   : validNumber,
                 removeOne   : removeOne,
                 removeAll   : removeAll,
                 showOne   : showOne,

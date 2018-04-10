@@ -98,7 +98,9 @@
                 else if(!!window.cordova && device.platform ==='iOS'){//jshint ignore:line
                     $rootScope.platformSlug ='ios';
                 }
-                navigator.splashscreen.hide();
+                if(navigator.splashscreen){
+                    navigator.splashscreen.hide();
+                }
 
                 if (typeof window.cordova === 'object') {
                     document.addEventListener('pause', function () {

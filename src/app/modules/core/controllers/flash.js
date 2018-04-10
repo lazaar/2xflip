@@ -45,6 +45,10 @@ angular
                         _.delay(function(){
                             vm.cards[newIndex].state = 'load'; 
                             if(max > 1){
+                                var newValue = max;
+                                do{
+                                    newValue = newValue/2;
+                                }while(CardService.validNumber(_.map(vm.cards, 'value'), newValue));
                                 vm.cards[newIndex].value = max/2;
                             }
                             $scope.$apply();
